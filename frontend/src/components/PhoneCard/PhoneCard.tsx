@@ -1,6 +1,6 @@
 import { Phone } from '@/types/phone';
-import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 import styles from './PhoneCard.module.scss';
 
 interface PhoneCardProps {
@@ -8,27 +8,27 @@ interface PhoneCardProps {
 }
 
 export const PhoneCard = ({ phone }: PhoneCardProps) => {
-  // Obtener la primera imagen disponible
-  const firstColorKey = Object.keys(phone.images)[0];
-  const imageUrl = phone.images[firstColorKey];
+  const [imageError, setImageError] = useState(false);
 
   return (
-    <Link href={`/phones/${phone._id}`} className={styles.card}>
+    <Link href={`/phones/${phone.id}`} className={styles.card}>
       <div className={styles.imageContainer}>
-        <Image
-          src={imageUrl}
-          alt={phone.name}
-          width={200}
-          height={200}
-          className={styles.image}
-        />
+        {phone.imageUrl && !imageError ? (
+          <img
+            src={phone.imageUrl}
+            alt={`${phone.brand} ${phone.name}`}
+            className={styles.image}
+            onError={() => setImageError(true)}
+          />
+        ) : (
+          <div className={styles.placeholderImage}>
+            {phone.brand} {phone.name}
+          </div>
+        )}
       </div>
       <div className={styles.info}>
-        <div className={styles.brand}>{phone.brand.toUpperCase()}</div>
-        <div className={styles.namePrice}>
-          <div className={styles.name}>{phone.name}</div>
-          <div className={styles.price}>{phone.basePrice} EUR</div>
-        </div>
+        <h3 className={styles.name}>{phone.brand} {phone.name}</h3>
+        <p className={styles.price}>{phone.basePrice} EUR</p>
       </div>
     </Link>
   );

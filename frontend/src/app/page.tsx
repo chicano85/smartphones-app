@@ -1,6 +1,7 @@
 'use client';
 
 import { Navbar } from '@/components/Navbar/Navbar';
+import { Pagination } from '@/components/Pagination/Pagination';
 import { PhoneList } from '@/components/PhoneList/PhoneList';
 import { SearchBar } from '@/components/SearchBar/SearchBar';
 import { phoneService } from '@/services/api';
@@ -9,9 +10,13 @@ import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import styles from './page.module.scss';
 
+const ITEMS_PER_PAGE = 20;
+
 export default function Home() {
   const searchParams = useSearchParams();
   const search = searchParams.get('search') || '';
+  const pageParam = searchParams.get('page');
+  const currentPage = pageParam ? parseInt(pageParam, 10) : 1;
   
   const [phones, setPhones] = useState<Phone[]>([]);
   const [totalResults, setTotalResults] = useState(0);
@@ -22,9 +27,19 @@ export default function Home() {
     const fetchPhones = async () => {
       try {
         setLoading(true);
-        const response = await phoneService.getPhones(search);
-        setPhones(response.phones);
-        setTotalResults(response.total);
+        const allData = await phoneService.getPhones(search);
+        
+        // Guardar el total de resultados
+        setTotalResults(allData.length);
+        
+        // Calcular el índice de inicio y fin para la paginación
+        const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+        const endIndex = startIndex + ITEMS_PER_PAGE;
+        
+        // Obtener solo los elementos para la página actual
+        const paginatedData = allData.slice(startIndex, endIndex);
+        
+        setPhones(paginatedData);
         setError('');
       } catch (err) {
         console.error('Error fetching phones:', err);
@@ -35,7 +50,7 @@ export default function Home() {
     };
 
     fetchPhones();
-  }, [search]);
+  }, [search, currentPage]);
 
   return (
     <main className={styles.main}>
@@ -47,8 +62,18 @@ export default function Home() {
           <div className={styles.loading}>Loading...</div>
         ) : error ? (
           <div className={styles.error}>{error}</div>
+        ) : phones.length > 0 ? (
+          <>
+            <PhoneList phones={phones} />
+            <Pagination 
+              currentPage={currentPage} 
+              totalItems={totalResults} 
+              itemsPerPage={ITEMS_PER_PAGE} 
+              search={search}
+            />
+          </>
         ) : (
-          <PhoneList phones={phones} />
+          <div className={styles.noResults}>No phones found</div>
         )}
       </div>
     </main>
