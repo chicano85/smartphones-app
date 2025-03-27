@@ -1,0 +1,29 @@
+.searchContainer {
+  margin: 2rem 0;
+  width: 100%;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.75rem 0;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+  font-family: Helvetica, Arial, sans-serif;
+  
+  &::placeholder {
+    color: #aaa;
+  }
+  
+  &:focus {
+    border-bottom: 1px solid #000;
+  }
+}
+
+.resultsCount {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #666;
+  font-family: Helvetica, Arial, sans-serif;
+} 
