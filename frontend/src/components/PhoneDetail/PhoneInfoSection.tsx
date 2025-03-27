@@ -31,8 +31,6 @@ export const PhoneInfoSection = ({
         <div className={styles.price}>{finalPrice} EUR</div>
       </div>
       
-      <div className={styles.description}>{phone.description}</div>
-      
       <StorageSelector 
         options={phone.storageOptions}
         selectedStorage={selectedStorage}

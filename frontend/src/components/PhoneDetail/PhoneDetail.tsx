@@ -108,7 +108,9 @@ export const PhoneDetail = ({ phone }: PhoneDetailProps) => {
       
       <PhoneSpecifications phone={phone} />
       
-      <SimilarItems />
+      {phone.similarProducts && phone.similarProducts.length > 0 && (
+        <SimilarItems similarProducts={phone.similarProducts} />
+      )}
     </div>
   );
 }; 
