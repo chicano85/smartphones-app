@@ -1,0 +1,21 @@
+.main {
+  min-height: 100vh;
+  background-color: white;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.25rem;
+}
+
+.error {
+  color: red;
+} 

@@ -12,17 +12,31 @@ const api = axios.create({
   }
 });
 
+// Para depuración
+console.log('API URL:', API_URL);
+
 export const phoneService = {
   // Obtener lista de teléfonos con filtros y paginación
   async getPhones(search?: string, page: number = 1, limit: number = 20): Promise<PhoneListResponse> {
-    const params = { search, page, limit };
-    const response = await api.get('/phones', { params });
-    return response.data;
+    try {
+      const params = { search, page, limit };
+      console.log('Fetching phones with params:', params);
+      const response = await api.get('/phones', { params });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching phones:', error);
+      throw error;
+    }
   },
 
   // Obtener un teléfono por ID
   async getPhoneById(id: string): Promise<Phone> {
-    const response = await api.get(`/phones/${id}`);
-    return response.data;
+    try {
+      const response = await api.get(`/phones/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Error fetching phone with ID ${id}:`, error);
+      throw error;
+    }
   }
 }; 
