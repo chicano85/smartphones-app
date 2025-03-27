@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { NextFunction, Request, Response, Router } from 'express';
 import { phoneController } from '../controllers/phoneController';
 import { validateApiKey } from '../middleware/authMiddleware';
 
@@ -9,7 +9,10 @@ router.get('/', phoneController.getPhones);
 router.get('/:id', phoneController.getPhoneById);
 
 // Rutas protegidas
-router.use(validateApiKey);
+router.use((req: Request, res: Response, next: NextFunction) => {
+  validateApiKey(req, res, next);
+});
+
 router.post('/', phoneController.createPhone);
 router.put('/:id', phoneController.updatePhone);
 router.delete('/:id', phoneController.deletePhone);

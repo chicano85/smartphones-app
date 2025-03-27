@@ -46,7 +46,7 @@ export const phoneController = {
   }),
 
   // Crear teléfono
-  createPhone: async (req: Request, res: Response) => {
+  createPhone: <RequestHandler>(async (req: Request, res: Response) => {
     try {
       const phone = new Phone(req.body);
       await phone.save();
@@ -54,10 +54,10 @@ export const phoneController = {
     } catch (error) {
       res.status(400).json({ message: 'Error al crear el teléfono' });
     }
-  },
+  }),
 
   // Actualizar teléfono
-  updatePhone: async (req: Request, res: Response) => {
+  updatePhone: <RequestHandler>(async (req: Request, res: Response) => {
     try {
       const phone = await Phone.findByIdAndUpdate(
         req.params.id,
@@ -71,10 +71,10 @@ export const phoneController = {
     } catch (error) {
       res.status(400).json({ message: 'Error al actualizar el teléfono' });
     }
-  },
+  }),
 
   // Eliminar teléfono
-  deletePhone: async (req: Request, res: Response) => {
+  deletePhone: <RequestHandler>(async (req, res) => {
     try {
       const phone = await Phone.findByIdAndDelete(req.params.id);
       if (!phone) {
@@ -84,5 +84,5 @@ export const phoneController = {
     } catch (error) {
       res.status(500).json({ message: 'Error al eliminar el teléfono' });
     }
-  }
+  })
 };

@@ -17,10 +17,10 @@ const phones = [
       { capacity: 512, price: 300 }
     ],
     images: {
-      "Space Black": "https://example.com/iphone-14-black.jpg",
-      "Silver": "https://example.com/iphone-14-silver.jpg",
-      "Gold": "https://example.com/iphone-14-gold.jpg",
-      "Deep Purple": "https://example.com/iphone-14-purple.jpg"
+      "Space Black": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-spaceblack?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1663703841896",
+      "Silver": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-silver?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1663703841896",
+      "Gold": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-gold?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1663703841896",
+      "Deep Purple": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-deeppurple?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1663703841896"
     },
     specifications: {
       screen: "6.1-inch Super Retina XDR",
@@ -32,7 +32,7 @@ const phones = [
     }
   },
   {
-    name: "Samsung Galaxy S23 Ultra",
+    name: "Galaxy S23 Ultra",
     brand: "Samsung",
     basePrice: 1199,
     colors: ["Phantom Black", "Cream", "Green", "Lavender"],
@@ -42,10 +42,10 @@ const phones = [
       { capacity: 1024, price: 380 }
     ],
     images: {
-      "Phantom Black": "https://example.com/s23-black.jpg",
-      "Cream": "https://example.com/s23-cream.jpg",
-      "Green": "https://example.com/s23-green.jpg",
-      "Lavender": "https://example.com/s23-lavender.jpg"
+      "Phantom Black": "https://images.samsung.com/is/image/samsung/p6pim/es/2302/gallery/es-galaxy-s23-ultra-s918-sm-s918bzkceas-534863461?$650_519_PNG$",
+      "Cream": "https://images.samsung.com/is/image/samsung/p6pim/es/2302/gallery/es-galaxy-s23-ultra-s918-sm-s918bzwceub-534863476?$650_519_PNG$",
+      "Green": "https://images.samsung.com/is/image/samsung/p6pim/es/2302/gallery/es-galaxy-s23-ultra-s918-sm-s918bzgceub-534863446?$650_519_PNG$",
+      "Lavender": "https://images.samsung.com/is/image/samsung/p6pim/es/2302/gallery/es-galaxy-s23-ultra-s918-sm-s918blvceub-534863431?$650_519_PNG$"
     },
     specifications: {
       screen: "6.8-inch Dynamic AMOLED 2X",

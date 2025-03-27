@@ -1,29 +1,32 @@
+@import '../../styles/variables.scss';
+
 .searchContainer {
-  margin: 2rem 0;
-  width: 100%;
+  margin: $spacing-xl 0;
+  position: relative;
 }
 
 .searchInput {
   width: 100%;
   padding: 0.75rem 0;
-  font-size: 1rem;
+  font-size: $font-size-md;
   border: none;
-  border-bottom: 1px solid #ccc;
+  border-bottom: $border-width solid $color-light;
   outline: none;
-  font-family: Helvetica, Arial, sans-serif;
+  background-color: transparent;
+  font-family: $font-family-base;
   
   &::placeholder {
-    color: #aaa;
+    color: $color-secondary;
   }
   
   &:focus {
-    border-bottom: 1px solid #000;
+    border-bottom-color: $color-primary;
   }
 }
 
 .resultsCount {
-  margin-top: 0.5rem;
-  font-size: 0.875rem;
-  color: #666;
-  font-family: Helvetica, Arial, sans-serif;
+  margin-top: $spacing-sm;
+  font-size: $font-size-sm;
+  color: $color-secondary;
+  text-transform: uppercase;
 } 
