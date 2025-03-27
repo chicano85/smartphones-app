@@ -1,144 +1,178 @@
+@import '../../styles/variables.scss';
+
 .backLink {
-  margin: 2rem 0;
-  padding-left: 0;
+  margin: $spacing-xl 0;
 }
 
 .backButton {
   background: none;
   border: none;
-  padding: 0;
-  font-size: 0.875rem;
-  color: #333;
+  color: $color-secondary;
   cursor: pointer;
+  font-size: $font-size-sm;
+  padding: 0;
   
   &:hover {
-    text-decoration: underline;
+    color: $color-primary;
   }
 }
 
 .topSection {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-xl;
+  margin-bottom: $spacing-xl;
   
-  @media (min-width: 768px) {
-    flex-direction: row;
-    gap: 4rem;
+  @media (max-width: $breakpoint-md) {
+    grid-template-columns: 1fr;
   }
+}
+
+.imageSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageContainer {
+  width: 100%;
+  height: 350px; /* Altura fija más pequeña */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-white;
+  padding: $spacing-md;
 }
 
 .phoneImage {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  margin-bottom: 2rem;
-  
-  @media (min-width: 768px) {
-    margin-bottom: 0;
-  }
-}
-
-.image {
   max-width: 100%;
-  height: auto;
+  max-height: 100%;
   object-fit: contain;
 }
 
+.placeholderImage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-light;
+  color: $color-secondary;
+}
+
 .phoneInfo {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.brand {
+  font-size: $font-size-sm;
+  color: $color-secondary;
+  text-transform: uppercase;
 }
 
 .phoneName {
-  font-size: 1.5rem;
-  font-weight: normal;
-  margin: 0 0 1rem 0;
+  font-size: $font-size-xl;
+  margin: 0;
+  text-transform: uppercase;
 }
 
 .priceSection {
-  margin-bottom: 2rem;
+  margin: $spacing-sm 0;
 }
 
 .price {
-  font-size: 1rem;
+  font-size: $font-size-lg;
+}
+
+.description {
+  margin: $spacing-md 0;
+  line-height: 1.5;
+  color: $color-secondary;
 }
 
 .optionSection {
-  margin-bottom: 2rem;
+  margin: $spacing-md 0;
 }
 
 .optionTitle {
-  font-size: 0.75rem;
-  font-weight: normal;
-  margin-bottom: 1rem;
-}
-
-.storageOptions {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.storageOption {
-  padding: 0.75rem 1rem;
-  border: 1px solid #ddd;
-  background: white;
-  cursor: pointer;
-  font-size: 0.875rem;
-  
-  &.selected {
-    border-color: black;
-  }
-  
-  &:hover {
-    background-color: #f9f9f9;
-  }
+  font-size: $font-size-sm;
+  margin-bottom: $spacing-sm;
+  text-transform: uppercase;
 }
 
 .colorOptions {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-xs;
 }
 
 .colorOption {
-  width: 24px;
-  height: 24px;
-  border-radius: 0;
-  border: 1px solid #ddd;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid $color-light;
   cursor: pointer;
   
   &.selected {
-    outline: 2px solid black;
+    outline: 2px solid $color-primary;
     outline-offset: 2px;
   }
 }
 
-.addToCartButton {
-  width: 100%;
-  padding: 1rem;
-  background-color: #f5f5f5;
-  color: black;
-  border: none;
-  font-size: 0.875rem;
+.selectedColorName {
+  font-size: $font-size-xs;
+  color: $color-secondary;
+  margin-top: $spacing-xs;
+}
+
+.storageOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-sm;
+}
+
+.storageOption {
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid $color-light;
+  background-color: $color-white;
   cursor: pointer;
-  margin-bottom: 3rem;
+  font-size: $font-size-sm;
+  
+  &.selected {
+    border-color: $color-primary;
+    background-color: $color-primary;
+    color: $color-white;
+  }
+}
+
+.addToCartButton {
+  margin-top: $spacing-md;
+  padding: $spacing-md;
+  background-color: $color-primary;
+  color: $color-white;
+  border: none;
+  cursor: pointer;
+  font-size: $font-size-md;
+  text-transform: uppercase;
   
   &:hover {
-    background-color: #e5e5e5;
+    opacity: 0.9;
   }
 }
 
 .specifications {
-  margin: 3rem 0;
-  width: 100%;
+  margin: $spacing-xl 0;
 }
 
-.specificationsTitle, .similarTitle {
-  font-size: 1rem;
-  font-weight: normal;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid #ddd;
+.specificationsTitle {
+  font-size: $font-size-lg;
+  margin-bottom: $spacing-md;
+  padding-bottom: $spacing-sm;
+  border-bottom: 1px solid $color-light;
+  text-transform: uppercase;
 }
 
 .specsTable {
@@ -146,7 +180,7 @@
   border-collapse: collapse;
   
   tr {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid $color-light;
     
     &:last-child {
       border-bottom: none;
@@ -154,45 +188,87 @@
   }
   
   td {
-    padding: 1rem 0;
+    padding: $spacing-md 0;
     vertical-align: top;
   }
 }
 
 .specLabel {
   width: 30%;
-  font-size: 0.75rem;
-  color: #666;
+  font-size: $font-size-xs;
+  color: $color-secondary;
   text-transform: uppercase;
 }
 
 .specValue {
   width: 70%;
-  font-size: 0.875rem;
+  font-size: $font-size-sm;
 }
 
 .similarItems {
-  margin: 3rem 0;
+  margin: $spacing-xl 0;
+}
+
+.similarTitle {
+  font-size: $font-size-lg;
+  margin-bottom: $spacing-md;
+  padding-bottom: $spacing-sm;
+  border-bottom: 1px solid $color-light;
+  text-transform: uppercase;
 }
 
 .similarGrid {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $spacing-md;
+}
+
+.similarItem {
+  border: 1px solid $color-light;
+  text-decoration: none;
+  color: inherit;
+  transition: transform $transition-speed, box-shadow $transition-speed;
   
-  @media (min-width: 480px) {
-    grid-template-columns: repeat(2, 1fr);
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
+}
+
+.similarItemImage {
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-white;
+  padding: $spacing-sm;
   
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(3, 1fr);
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
   }
-  
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  
-  @media (min-width: 1280px) {
-    grid-template-columns: repeat(5, 1fr);
-  }
+}
+
+.similarItemInfo {
+  padding: $spacing-sm;
+}
+
+.similarItemBrand {
+  font-size: $font-size-xs;
+  color: $color-secondary;
+  text-transform: uppercase;
+}
+
+.similarItemName {
+  font-size: $font-size-sm;
+  margin: $spacing-xs 0;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.similarItemPrice {
+  font-size: $font-size-sm;
 } 

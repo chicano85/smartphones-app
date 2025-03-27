@@ -1,8 +1,8 @@
-import { Phone } from '@/types/phone';
+import { PhoneDetail } from '@/types/phone';
 import styles from './PhoneDetail.module.scss';
 
 interface PhoneSpecificationsProps {
-  phone: Phone;
+  phone: PhoneDetail;
 }
 
 export const PhoneSpecifications = ({ phone }: PhoneSpecificationsProps) => {
@@ -21,43 +21,39 @@ export const PhoneSpecifications = ({ phone }: PhoneSpecificationsProps) => {
           </tr>
           <tr>
             <td className={styles.specLabel}>DESCRIPTION</td>
-            <td className={styles.specValue}>
-              El {phone.brand} {phone.name} es un smartphone de gama alta con una 
-              pantalla {phone.specifications.screen}, procesador {phone.specifications.processor}, 
-              y un avanzado sistema de cámara con inteligencia artificial.
-            </td>
+            <td className={styles.specValue}>{phone.description}</td>
           </tr>
           <tr>
             <td className={styles.specLabel}>SCREEN</td>
-            <td className={styles.specValue}>{phone.specifications.screen}</td>
+            <td className={styles.specValue}>{phone.specs.screen}</td>
           </tr>
           <tr>
             <td className={styles.specLabel}>RESOLUTION</td>
-            <td className={styles.specValue}>3120 x 1440 pixels</td>
+            <td className={styles.specValue}>{phone.specs.resolution}</td>
           </tr>
           <tr>
             <td className={styles.specLabel}>PROCESSOR</td>
-            <td className={styles.specValue}>{phone.specifications.processor}</td>
+            <td className={styles.specValue}>{phone.specs.processor}</td>
           </tr>
           <tr>
             <td className={styles.specLabel}>MAIN CAMERA</td>
-            <td className={styles.specValue}>{phone.specifications.camera}</td>
+            <td className={styles.specValue}>{phone.specs.mainCamera}</td>
           </tr>
           <tr>
             <td className={styles.specLabel}>SELFIE CAMERA</td>
-            <td className={styles.specValue}>12 MP</td>
+            <td className={styles.specValue}>{phone.specs.selfieCamera}</td>
           </tr>
           <tr>
             <td className={styles.specLabel}>BATTERY</td>
-            <td className={styles.specValue}>{phone.specifications.battery}</td>
+            <td className={styles.specValue}>{phone.specs.battery}</td>
           </tr>
           <tr>
             <td className={styles.specLabel}>OS</td>
-            <td className={styles.specValue}>{phone.specifications.os}</td>
+            <td className={styles.specValue}>{phone.specs.os}</td>
           </tr>
           <tr>
             <td className={styles.specLabel}>SCREEN REFRESH RATE</td>
-            <td className={styles.specValue}>120 Hz</td>
+            <td className={styles.specValue}>{phone.specs.screenRefreshRate}</td>
           </tr>
         </tbody>
       </table>

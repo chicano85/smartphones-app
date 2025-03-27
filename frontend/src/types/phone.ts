@@ -1,5 +1,5 @@
 export interface StorageOption {
-  capacity: number;
+  capacity: string;
   price: number;
 }
 
@@ -21,10 +21,32 @@ export interface Phone {
   imageUrl: string;
 }
 
-export interface PhoneDetail extends Phone {
-  colors: string[];
-  storage: StorageOption[];
-  specifications: PhoneSpecifications;
+export interface PhoneDetail {
+  id: string;
+  brand: string;
+  name: string;
+  description: string;
+  basePrice: number;
+  rating: number;
+  specs: {
+    screen: string;
+    resolution: string;
+    processor: string;
+    mainCamera: string;
+    selfieCamera: string;
+    battery: string;
+    os: string;
+    screenRefreshRate: string;
+  };
+  colorOptions: ColorOption[];
+  storageOptions: StorageOption[];
+  similarProducts: Phone[];
+}
+
+export interface ColorOption {
+  name: string;
+  hexCode: string;
+  imageUrl: string;
 }
 
 export interface CartItem {
@@ -32,7 +54,7 @@ export interface CartItem {
   name: string;
   brand: string;
   color: string;
-  storage: number;
+  storage: string;
   price: number;
   image: string;
 }

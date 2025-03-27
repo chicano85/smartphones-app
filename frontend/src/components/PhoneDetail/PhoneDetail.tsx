@@ -1,46 +1,86 @@
 'use client';
 
 import { useCart } from '@/context/CartContext';
-import { Phone } from '@/types/phone';
+import { PhoneDetail as PhoneDetailType } from '@/types/phone';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './PhoneDetail.module.scss';
 import { PhoneImageSection } from './PhoneImageSection';
 import { PhoneInfoSection } from './PhoneInfoSection';
-
 import { PhoneSpecifications } from './PhoneSpecifications';
 import { SimilarItems } from './SimilarItems';
 
 interface PhoneDetailProps {
-  phone: Phone;
+  phone: PhoneDetailType;
 }
 
 export const PhoneDetail = ({ phone }: PhoneDetailProps) => {
   const router = useRouter();
-  const [selectedColor, setSelectedColor] = useState<string>(phone.colors[0] || '');
-  const [selectedStorage, setSelectedStorage] = useState<number>(phone.storage[0]?.capacity || 0);
+  const [selectedColor, setSelectedColor] = useState<string>('');
+  const [selectedStorage, setSelectedStorage] = useState<string>('');
+  const [currentImage, setCurrentImage] = useState<string>('');
+  const [finalPrice, setFinalPrice] = useState<number>(phone.basePrice);
   const { addToCart } = useCart();
+
+  // Inicializar valores por defecto al cargar el componente
+  useEffect(() => {
+    if (phone.colorOptions && phone.colorOptions.length > 0) {
+      setSelectedColor(phone.colorOptions[0].name);
+      setCurrentImage(phone.colorOptions[0].imageUrl);
+    }
+    
+    if (phone.storageOptions && phone.storageOptions.length > 0) {
+      setSelectedStorage(phone.storageOptions[0].capacity);
+      // Calcular precio inicial
+      const initialStorageOption = phone.storageOptions[0];
+      setFinalPrice(phone.basePrice + (initialStorageOption.price || 0));
+    }
+  }, [phone]);
+
+  // Actualizar imagen cuando cambia el color seleccionado
+  useEffect(() => {
+    const colorOption = phone.colorOptions.find(c => c.name === selectedColor);
+    if (colorOption) {
+      setCurrentImage(colorOption.imageUrl);
+    }
+  }, [selectedColor, phone.colorOptions]);
+
+  // Actualizar precio cuando cambia el almacenamiento seleccionado
+  useEffect(() => {
+    const storageOption = phone.storageOptions.find(s => s.capacity === selectedStorage);
+    if (storageOption) {
+      setFinalPrice(phone.basePrice + (storageOption.price || 0));
+    } else {
+      setFinalPrice(phone.basePrice);
+    }
+  }, [selectedStorage, phone.basePrice, phone.storageOptions]);
+
+  const handleColorSelect = (color: string) => {
+    setSelectedColor(color);
+  };
+
+  const handleStorageSelect = (storage: string) => {
+    setSelectedStorage(storage);
+  };
 
   const handleAddToCart = () => {
     if (phone && selectedColor && selectedStorage) {
-      const storageOption = phone.storage.find(s => s.capacity === selectedStorage);
-      const price = (phone.basePrice + (storageOption?.price || 0));
+      const colorOption = phone.colorOptions.find(c => c.name === selectedColor);
       
       addToCart({
-        phoneId: phone._id,
+        phoneId: phone.id,
         name: phone.name,
         brand: phone.brand,
         color: selectedColor,
         storage: selectedStorage,
-        price: price,
-        image: phone.images[selectedColor]
+        price: finalPrice,
+        image: colorOption?.imageUrl || ''
       });
+      
+      // Opcional: mostrar confirmación o redirigir al carrito
+      alert('Product added to cart!');
     }
   };
-
-  // Calcular el precio con el almacenamiento seleccionado
-  const storageOption = phone.storage.find(s => s.capacity === selectedStorage);
-  const finalPrice = phone.basePrice + (storageOption?.price || 0);
 
   return (
     <div>
@@ -50,7 +90,7 @@ export const PhoneDetail = ({ phone }: PhoneDetailProps) => {
       
       <div className={styles.topSection}>
         <PhoneImageSection 
-          image={phone.images[selectedColor] || Object.values(phone.images)[0]} 
+          image={currentImage} 
           name={phone.name} 
           color={selectedColor} 
         />
@@ -58,9 +98,9 @@ export const PhoneDetail = ({ phone }: PhoneDetailProps) => {
         <PhoneInfoSection 
           phone={phone}
           selectedColor={selectedColor}
-          setSelectedColor={setSelectedColor}
+          setSelectedColor={handleColorSelect}
           selectedStorage={selectedStorage}
-          setSelectedStorage={setSelectedStorage}
+          setSelectedStorage={handleStorageSelect}
           finalPrice={finalPrice}
           onAddToCart={handleAddToCart}
         />

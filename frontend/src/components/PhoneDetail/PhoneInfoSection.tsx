@@ -1,14 +1,14 @@
-import { Phone } from '@/types/phone';
+import { PhoneDetail } from '@/types/phone';
 import { ColorSelector } from './ColorSelector';
 import styles from './PhoneDetail.module.scss';
 import { StorageSelector } from './StorageSelector';
 
 interface PhoneInfoSectionProps {
-  phone: Phone;
+  phone: PhoneDetail;
   selectedColor: string;
   setSelectedColor: (color: string) => void;
-  selectedStorage: number;
-  setSelectedStorage: (storage: number) => void;
+  selectedStorage: string;
+  setSelectedStorage: (storage: string) => void;
   finalPrice: number;
   onAddToCart: () => void;
 }
@@ -24,26 +24,29 @@ export const PhoneInfoSection = ({
 }: PhoneInfoSectionProps) => {
   return (
     <div className={styles.phoneInfo}>
+      <div className={styles.brand}>{phone.brand.toUpperCase()}</div>
       <h1 className={styles.phoneName}>{phone.name.toUpperCase()}</h1>
       
       <div className={styles.priceSection}>
-        <div className={styles.price}>From {finalPrice} EUR</div>
+        <div className={styles.price}>{finalPrice} EUR</div>
       </div>
       
+      <div className={styles.description}>{phone.description}</div>
+      
       <StorageSelector 
-        options={phone.storage}
+        options={phone.storageOptions}
         selectedStorage={selectedStorage}
         onSelect={setSelectedStorage}
       />
       
       <ColorSelector 
-        colors={phone.colors}
+        options={phone.colorOptions}
         selectedColor={selectedColor}
         onSelect={setSelectedColor}
       />
       
       <button className={styles.addToCartButton} onClick={onAddToCart}>
-        AÑADIR
+        ADD TO CART
       </button>
     </div>
   );

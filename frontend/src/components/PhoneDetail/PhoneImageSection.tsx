@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import styles from './PhoneDetail.module.scss';
 
 interface PhoneImageSectionProps {
@@ -9,14 +8,20 @@ interface PhoneImageSectionProps {
 
 export const PhoneImageSection = ({ image, name, color }: PhoneImageSectionProps) => {
   return (
-    <div className={styles.phoneImage}>
-      <Image
-        src={image}
-        alt={`${name} - ${color}`}
-        width={400}
-        height={400}
-        className={styles.image}
-      />
+    <div className={styles.imageSection}>
+      <div className={styles.imageContainer}>
+        {image ? (
+          <img 
+            src={image} 
+            alt={`${name} - ${color}`} 
+            className={styles.phoneImage} 
+          />
+        ) : (
+          <div className={styles.placeholderImage}>
+            {name}
+          </div>
+        )}
+      </div>
     </div>
   );
 }; 
