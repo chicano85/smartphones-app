@@ -10,7 +10,7 @@
   padding: 0 2rem;
 }
 
-.loading, .error {
+.loading, .error, .noResults {
   text-align: center;
   padding: 2rem;
   font-size: 1.25rem;
@@ -18,4 +18,8 @@
 
 .error {
   color: red;
+}
+
+.noResults {
+  color: #666;
 } 

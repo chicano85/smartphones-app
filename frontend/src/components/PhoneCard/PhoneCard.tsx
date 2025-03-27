@@ -27,8 +27,11 @@ export const PhoneCard = ({ phone }: PhoneCardProps) => {
         )}
       </div>
       <div className={styles.info}>
-        <h3 className={styles.name}>{phone.brand} {phone.name}</h3>
-        <p className={styles.price}>{phone.basePrice} EUR</p>
+        <div className={styles.brand}>{phone.brand}</div>
+        <div className={styles.nameAndPrice}>
+          <h3 className={styles.name}>{phone.name}</h3>
+          <p className={styles.price}>{phone.basePrice} EUR</p>
+        </div>
       </div>
     </Link>
   );

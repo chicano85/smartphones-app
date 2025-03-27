@@ -1,48 +1,59 @@
+@import '../../styles/variables.scss';
+
 .navbar {
+  background-color: $color-white;
+  padding: $spacing-md 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: $container-padding;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
-  background-color: white;
-  border-bottom: 1px solid #eaeaea;
 }
 
 .logo {
-  font-size: 1.5rem;
+  text-decoration: none;
+  color: $color-primary;
   font-weight: bold;
-  
-  a {
-    text-decoration: none;
-    color: black;
-  }
+  font-size: $font-size-xl;
+  display: flex;
+  align-items: center;
+}
+
+.logoText {
+  font-family: $font-family-base;
+  font-weight: bold;
+}
+
+.cartLink {
+  position: relative;
+  color: $color-primary;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
 .cartIcon {
-  position: relative;
-  
-  a {
-    text-decoration: none;
-    color: black;
-  }
-}
-
-.cartContainer {
-  position: relative;
-  display: flex;
-  align-items: center;
+  font-size: $font-size-xl;
 }
 
 .cartCount {
   position: absolute;
   top: -8px;
   right: -8px;
-  background-color: black;
-  color: white;
+  background-color: $color-primary;
+  color: $color-white;
   border-radius: 50%;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
+  align-items: center;
+  font-size: $font-size-xs;
 } 
