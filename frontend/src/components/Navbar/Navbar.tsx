@@ -5,8 +5,8 @@ import Link from 'next/link';
 import styles from './Navbar.module.scss';
 
 export const Navbar = () => {
-  const { cartItems } = useCart();
-  const totalItems = cartItems.length;
+  const { cart } = useCart();
+  const totalItems = cart.length;
 
   return (
     <nav className={styles.navbar}>

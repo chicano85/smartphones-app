@@ -7,10 +7,14 @@ interface PhoneListProps {
 }
 
 export const PhoneList = ({ phones }: PhoneListProps) => {
+  if (!phones || phones.length === 0) {
+    return <div className={styles.noPhones}>No phones available</div>;
+  }
+
   return (
     <div className={styles.grid}>
-      {phones.map((phone) => (
-        <PhoneCard key={phone._id} phone={phone} />
+      {phones.map((phone, index) => (
+        <PhoneCard key={`${phone.id}-${index}`} phone={phone} />
       ))}
     </div>
   );

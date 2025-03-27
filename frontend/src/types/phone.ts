@@ -57,6 +57,7 @@ export interface CartItem {
   storage: string;
   price: number;
   image: string;
+  quantity?: number;
 }
 
 export interface PhoneListResponse {
