@@ -6,11 +6,11 @@ import styles from './page.module.scss';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
+// Usar una función asíncrona para la página
 export default async function PhoneDetailPage({ params }: { params: { id: string } }) {
-  // Esperar a que los parámetros estén disponibles
-  const id = await params.id;
-  
-  console.log('Page: Phone ID from params:', id);
+  // Esperar a que los parámetros estén disponibles usando Promise.resolve
+  const resolvedParams = await Promise.resolve(params);
+  const id = resolvedParams.id;
   
   return (
     <main className={styles.main}>
