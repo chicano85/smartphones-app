@@ -4,8 +4,7 @@
   display: block;
   text-decoration: none;
   color: inherit;
-  border: $border-width solid $color-light;
-  border-radius: $border-radius;
+  border: $border-width solid $color-secondary;
   overflow: hidden;
   transition: transform $transition-speed, box-shadow $transition-speed;
   

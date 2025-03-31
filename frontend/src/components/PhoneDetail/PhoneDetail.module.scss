@@ -11,9 +11,20 @@
   cursor: pointer;
   font-size: $font-size-sm;
   padding: 0;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  font-weight: 300;
+  letter-spacing: 1px;
   
   &:hover {
     color: $color-primary;
+  }
+  
+  &::before {
+    content: "<";
+    font-size: $font-size-md;
+    margin-right: $spacing-xs;
   }
 }
 
@@ -83,11 +94,14 @@
 }
 
 .price {
-  font-size: $font-size-lg;
+  font-size: $font-size-md;
+  font-weight: 300;
+  color: $color-primary;
 }
 
 .optionSection {
   margin: $spacing-md 0;
+  font-size: $font-size-sm;
 }
 
 .optionTitle {
@@ -211,6 +225,7 @@
 
 .carouselWrapper {
   position: relative;
+  overflow: hidden;
 }
 
 .carouselContainer {
@@ -219,39 +234,11 @@
   scroll-behavior: smooth;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
+  padding: $spacing-sm 0;
   
   &::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
   }
-}
-
-.carouselArrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid $color-light;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  z-index: 10;
-  font-size: $font-size-lg;
-  
-  &:hover {
-    background-color: $color-white;
-  }
-}
-
-.carouselArrowLeft {
-  left: -20px;
-}
-
-.carouselArrowRight {
-  right: -20px;
 }
 
 .similarProduct {

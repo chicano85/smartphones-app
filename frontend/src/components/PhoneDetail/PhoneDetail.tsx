@@ -85,7 +85,7 @@ export const PhoneDetail = ({ phone }: PhoneDetailProps) => {
   return (
     <div>
       <div className={styles.backLink}>
-        <button onClick={() => router.back()} className={styles.backButton}>← BACK</button>
+        <button onClick={() => router.back()} className={styles.backButton}>BACK</button>
       </div>
       
       <div className={styles.topSection}>

@@ -24,7 +24,6 @@ export const PhoneInfoSection = ({
 }: PhoneInfoSectionProps) => {
   return (
     <div className={styles.phoneInfo}>
-      <div className={styles.brand}>{phone.brand.toUpperCase()}</div>
       <h1 className={styles.phoneName}>{phone.name.toUpperCase()}</h1>
       
       <div className={styles.priceSection}>

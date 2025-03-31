@@ -19,7 +19,6 @@ export const StorageSelector = ({ options, selectedStorage, onSelect }: StorageS
             onClick={() => onSelect(option.capacity)}
           >
             {option.capacity}
-            {option.price > 0 && ` (+${option.price} EUR)`}
           </button>
         ))}
       </div>

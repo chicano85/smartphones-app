@@ -10,7 +10,7 @@
   padding: 0.75rem 0;
   font-size: $font-size-md;
   border: none;
-  border-bottom: $border-width solid $color-light;
+  border-bottom: $border-width solid $color-secondary;
   outline: none;
   background-color: transparent;
   font-family: $font-family-base;
@@ -20,13 +20,13 @@
   }
   
   &:focus {
-    border-bottom-color: $color-primary;
+    border-bottom-color: $color-secondary;
   }
 }
 
 .resultsCount {
   margin-top: $spacing-sm;
   font-size: $font-size-sm;
-  color: $color-secondary;
+  color: $color-primary;
   text-transform: uppercase;
 } 

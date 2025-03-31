@@ -22,7 +22,7 @@ export const ColorSelector = ({ options, selectedColor, onSelect }: ColorSelecto
           />
         ))}
       </div>
-      <div className={styles.selectedColorName}>{selectedColor}</div>
+     
     </div>
   );
 }; 

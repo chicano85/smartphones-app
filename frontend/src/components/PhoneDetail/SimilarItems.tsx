@@ -2,7 +2,7 @@
 
 import { Phone } from '@/types/phone';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import styles from './PhoneDetail.module.scss';
 
 interface SimilarItemsProps {
@@ -11,49 +11,6 @@ interface SimilarItemsProps {
 
 export const SimilarItems = ({ similarProducts }: SimilarItemsProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [showLeftArrow, setShowLeftArrow] = useState(false);
-  const [showRightArrow, setShowRightArrow] = useState(true);
-
-  useEffect(() => {
-    const checkScroll = () => {
-      if (!scrollContainerRef.current) return;
-      
-      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
-      setShowLeftArrow(scrollLeft > 0);
-      setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 10); // 10px de margen
-    };
-
-    const container = scrollContainerRef.current;
-    if (container) {
-      container.addEventListener('scroll', checkScroll);
-      // Comprobar inicialmente
-      checkScroll();
-      
-      // Comprobar después de que las imágenes se carguen
-      window.addEventListener('load', checkScroll);
-      window.addEventListener('resize', checkScroll);
-    }
-
-    return () => {
-      if (container) {
-        container.removeEventListener('scroll', checkScroll);
-      }
-      window.removeEventListener('load', checkScroll);
-      window.removeEventListener('resize', checkScroll);
-    };
-  }, []);
-
-  const scrollLeft = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -300, behavior: 'smooth' });
-    }
-  };
-
-  const scrollRight = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' });
-    }
-  };
 
   if (!similarProducts || similarProducts.length === 0) {
     return null;
@@ -64,12 +21,6 @@ export const SimilarItems = ({ similarProducts }: SimilarItemsProps) => {
       <h2 className={styles.similarTitle}>SIMILAR ITEMS</h2>
       
       <div className={styles.carouselWrapper}>
-        {showLeftArrow && (
-          <button className={`${styles.carouselArrow} ${styles.carouselArrowLeft}`} onClick={scrollLeft}>
-            &lt;
-          </button>
-        )}
-        
         <div className={styles.carouselContainer} ref={scrollContainerRef}>
           {similarProducts.map(product => (
             <Link href={`/phones/${product.id}`} key={product.id} className={styles.similarProduct}>
@@ -90,12 +41,6 @@ export const SimilarItems = ({ similarProducts }: SimilarItemsProps) => {
             </Link>
           ))}
         </div>
-        
-        {showRightArrow && (
-          <button className={`${styles.carouselArrow} ${styles.carouselArrowRight}`} onClick={scrollRight}>
-            &gt;
-          </button>
-        )}
       </div>
       
       <div className={styles.divider}></div>
