@@ -22,6 +22,10 @@ export const PhoneInfoSection = ({
   finalPrice,
   onAddToCart
 }: PhoneInfoSectionProps) => {
+  
+  // Verificar si el botón debe estar habilitado
+  const isAddToCartDisabled = !selectedColor || !selectedStorage;
+
   return (
     <div className={styles.phoneInfo}>
       <h1 className={styles.phoneName}>{phone.name.toUpperCase()}</h1>
@@ -41,9 +45,21 @@ export const PhoneInfoSection = ({
         onSelect={setSelectedColor}
       />
       
-      <button className={styles.addToCartButton} onClick={onAddToCart}>
-        ADD TO CART
-      </button>
+      {isAddToCartDisabled ? (
+        <button 
+          className={styles.disabledButton}
+          disabled={true}
+        >
+          ADD TO CART
+        </button>
+      ) : (
+        <button 
+          className={styles.addToCartButton}
+          onClick={onAddToCart}
+        >
+          ADD TO CART
+        </button>
+      )}
     </div>
   );
 }; 

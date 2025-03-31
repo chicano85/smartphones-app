@@ -22,34 +22,31 @@ export const PhoneDetail = ({ phone }: PhoneDetailProps) => {
   const [finalPrice, setFinalPrice] = useState<number>(phone.basePrice);
   const { addToCart } = useCart();
 
-  // Inicializar valores por defecto al cargar el componente
+  // Solo inicializar la imagen, NO seleccionar color ni almacenamiento
   useEffect(() => {
     if (phone.colorOptions && phone.colorOptions.length > 0) {
-      setSelectedColor(phone.colorOptions[0].name);
       setCurrentImage(phone.colorOptions[0].imageUrl);
     }
-    
-    if (phone.storageOptions && phone.storageOptions.length > 0) {
-      setSelectedStorage(phone.storageOptions[0].capacity);
-      // Calcular precio inicial
-      const initialStorageOption = phone.storageOptions[0];
-      setFinalPrice(phone.basePrice + (initialStorageOption.price || 0));
-    }
+    // NO establecer selectedColor ni selectedStorage aquí
   }, [phone]);
 
   // Actualizar imagen cuando cambia el color seleccionado
   useEffect(() => {
-    const colorOption = phone.colorOptions.find(c => c.name === selectedColor);
-    if (colorOption) {
-      setCurrentImage(colorOption.imageUrl);
+    if (selectedColor) {
+      const colorOption = phone.colorOptions.find(c => c.name === selectedColor);
+      if (colorOption) {
+        setCurrentImage(colorOption.imageUrl);
+      }
     }
   }, [selectedColor, phone.colorOptions]);
 
   // Actualizar precio cuando cambia el almacenamiento seleccionado
   useEffect(() => {
-    const storageOption = phone.storageOptions.find(s => s.capacity === selectedStorage);
-    if (storageOption) {
-      setFinalPrice(phone.basePrice + (storageOption.price || 0));
+    if (selectedStorage) {
+      const storageOption = phone.storageOptions.find(s => s.capacity === selectedStorage);
+      if (storageOption) {
+        setFinalPrice(storageOption.price);
+      }
     } else {
       setFinalPrice(phone.basePrice);
     }
@@ -64,22 +61,20 @@ export const PhoneDetail = ({ phone }: PhoneDetailProps) => {
   };
 
   const handleAddToCart = () => {
-    if (phone && selectedColor && selectedStorage) {
-      const colorOption = phone.colorOptions.find(c => c.name === selectedColor);
-      
-      addToCart({
-        phoneId: phone.id,
-        name: phone.name,
-        brand: phone.brand,
-        color: selectedColor,
-        storage: selectedStorage,
-        price: finalPrice,
-        image: colorOption?.imageUrl || ''
-      });
-      
-      // Opcional: mostrar confirmación o redirigir al carrito
-      alert('Product added to cart!');
-    }
+    if (!selectedColor || !selectedStorage) return;
+    
+    addToCart({
+      phoneId: phone.id,
+      name: phone.name,
+      brand: phone.brand,
+      image: currentImage,
+      color: selectedColor,
+      storage: selectedStorage,
+      price: finalPrice,
+      quantity: 1
+    });
+    
+    router.push('/cart');
   };
 
   return (
@@ -111,6 +106,7 @@ export const PhoneDetail = ({ phone }: PhoneDetailProps) => {
       {phone.similarProducts && phone.similarProducts.length > 0 && (
         <SimilarItems similarProducts={phone.similarProducts} />
       )}
+      
     </div>
   );
 }; 

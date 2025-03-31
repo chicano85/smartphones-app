@@ -1,9 +1,10 @@
 'use client';
 
+import { phoneService } from '@/services/api';
 import { PhoneDetail as PhoneDetailType } from '@/types/phone';
 import { useEffect, useState } from 'react';
+import styles from '../../app/page.module.scss';
 import { PhoneDetail } from './PhoneDetail';
-import styles from './PhoneDetail.module.scss';
 
 interface PhoneDetailClientProps {
   phoneId: string;
@@ -18,31 +19,8 @@ export const PhoneDetailClient = ({ phoneId }: PhoneDetailClientProps) => {
     const fetchPhoneDetails = async () => {
       try {
         setLoading(true);
-        
-        // URL de la API
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://prueba-tecnica-api-tienda-moviles.onrender.com';
-        const timestamp = new Date().getTime();
-        const url = `${apiUrl}/products/${phoneId}?_=${timestamp}`;
-        
-        console.log('Client: Fetching from URL:', url);
-        
-        // Usar fetch directamente para asegurarnos de que se vea en Network
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': '87909682e6cd74208f41a6ef39fe4191',
-            'Cache-Control': 'no-cache, no-store, must-revalidate'
-          }
-        });
-        
-        if (!response.ok) {
-          throw new Error(`API responded with status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        console.log('Client: Phone details received:', data);
-        setPhone(data);
+        const phoneData = await phoneService.getPhoneById(phoneId);
+        setPhone(phoneData);
         setError(null);
       } catch (err) {
         console.error('Error fetching phone details:', err);

@@ -9,17 +9,17 @@ interface StorageSelectorProps {
 
 export const StorageSelector = ({ options, selectedStorage, onSelect }: StorageSelectorProps) => {
   return (
-    <div className={styles.optionSection}>
-      <h3 className={styles.optionTitle}>STORAGE. CHOOSE THE CAPACITY.</h3>
+    <div>
+      <h3>Storage</h3>
       <div className={styles.storageOptions}>
         {options.map(option => (
-          <button
+          <div
             key={option.capacity}
             className={`${styles.storageOption} ${selectedStorage === option.capacity ? styles.selected : ''}`}
             onClick={() => onSelect(option.capacity)}
           >
             {option.capacity}
-          </button>
+          </div>
         ))}
       </div>
     </div>

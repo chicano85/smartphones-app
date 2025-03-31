@@ -155,18 +155,31 @@
 }
 
 .addToCartButton {
-  margin-top: $spacing-md;
-  padding: $spacing-md;
-  background-color: $color-primary;
-  color: $color-white;
+  background-color: #000;
+  color: #fff;
   border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
-  font-size: $font-size-md;
-  text-transform: uppercase;
-  
-  &:hover {
-    opacity: 0.9;
-  }
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.disabledButton {
+  background-color: #ccc;
+  color: #666;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: not-allowed;
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 20px;
+  opacity: 0.5;
 }
 
 .specifications {
