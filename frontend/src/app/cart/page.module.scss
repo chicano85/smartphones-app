@@ -56,6 +56,10 @@
   }
 }
 
+.priceContainer {
+  display: flex;
+  gap: $spacing-md;
+}
 // Estilos para carrito con productos
 .cartItems {
   margin-bottom: $spacing-xl;
@@ -138,13 +142,37 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: auto;
-  padding-top: $spacing-xl;
-  border-top: 1px solid $color-light;
-  
-  @media (max-width: $breakpoint-md) {
-    flex-direction: column;
-    gap: $spacing-md;
+  padding: 20px;
+  margin-top: 20px;
+
+  .paymentSection {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .total {
+      font-size: 1.2rem;
+      
+      span {
+        margin-right: 10px;
+      }
+    }
+    
+    .payButton {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 12px 40px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
   }
 }
 

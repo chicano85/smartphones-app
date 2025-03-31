@@ -1,0 +1,28 @@
+.cartFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-top: 1px solid #eee;
+  margin-top: 20px;
+  
+  .total {
+    font-size: 1.2rem;
+    font-weight: bold;
+    
+    span {
+      margin-right: 10px;
+    }
+  }
+  
+  .payButton {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 12px 40px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+} 

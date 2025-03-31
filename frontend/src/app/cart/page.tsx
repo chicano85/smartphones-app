@@ -67,20 +67,19 @@ export default function CartPage() {
           </div>
         )}
         
-        {/* Footer siempre visible en la parte inferior */}
         <div className={styles.cartFooter}>
           <Link href="/" className={styles.continueShoppingButton}>
             CONTINUE SHOPPING
           </Link>
-          
-          <div className={styles.totalSection}>
-            <span className={styles.totalLabel}>TOTAL</span>
-            <span className={styles.totalValue}>{calculateTotal()} EUR</span>
+          <div className={styles.paymentSection}>
+            <div className={styles.total}>
+              <span>TOTAL</span>
+              <span>{calculateTotal()} EUR</span>
+            </div>
+            <button className={styles.payButton} disabled={cart.length === 0}>
+              PAY
+            </button>
           </div>
-          
-          <button className={styles.payButton} disabled={cart.length === 0}>
-            PAY
-          </button>
         </div>
       </div>
     </main>
