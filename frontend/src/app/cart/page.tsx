@@ -1,12 +1,16 @@
 'use client';
 
+import { CartEmpty } from '@/components/Cart/CartEmpty';
+import { CartFooter } from '@/components/Cart/CartFooter';
+import { CartItem } from '@/components/Cart/CartItem';
 import { Navbar } from '@/components/Navbar/Navbar';
 import { useCart } from '@/context/CartContext';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import styles from './page.module.scss';
 
 export default function CartPage() {
+  const router = useRouter();
   const { cart, removeFromCart } = useCart();
   const [isClient, setIsClient] = useState(false);
 
@@ -32,6 +36,10 @@ export default function CartPage() {
     );
   }
 
+  const handleContinueShopping = () => {
+    router.push('/');
+  };
+
   return (
     <main>
       <Navbar />
@@ -39,48 +47,26 @@ export default function CartPage() {
         <h1 className={styles.title}>CART ({cart.length})</h1>
 
         {cart.length === 0 ? (
-          // Carrito vacío
-          <div className={styles.emptyCart}>
-            <p className={styles.emptyMessage}>Your cart is empty</p>
-          </div>
+          <CartEmpty onContinueShopping={handleContinueShopping} />
         ) : (
-          // Carrito con productos
-          <div className={styles.cartItems}>
-            {cart.map((item, index) => (
-              <div key={`${item.phoneId}-${item.color}-${item.storage}-${index}`} className={styles.cartItem}>
-                <div className={styles.itemImageContainer}>
-                  <img src={item.image} alt={`${item.brand} ${item.name}`} className={styles.itemImage} />
-                </div>
-                <div className={styles.itemDetails}>
-                  <div className={styles.itemName}>{item.name}</div>
-                  <div className={styles.itemSpecs}>{item.storage} GB | {item.color.toUpperCase()}</div>
-                  <div className={styles.itemPrice}>{item.price} EUR</div>
-                  <button 
-                    className={styles.removeButton}
-                    onClick={() => removeFromCart(index)}
-                  >
-                    Eliminar
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-        
-        <div className={styles.cartFooter}>
-          <Link href="/" className={styles.continueShoppingButton}>
-            CONTINUE SHOPPING
-          </Link>
-          <div className={styles.paymentSection}>
-            <div className={styles.total}>
-              <span>TOTAL</span>
-              <span>{calculateTotal()} EUR</span>
+          <>
+            <div className={styles.cartItems}>
+              {cart.map((item, index) => (
+                <CartItem 
+                  key={`${item.phoneId}-${item.color}-${item.storage}-${index}`}
+                  item={item}
+                  index={index}
+                  onRemove={removeFromCart}
+                />
+              ))}
             </div>
-            <button className={styles.payButton} disabled={cart.length === 0}>
-              PAY
-            </button>
-          </div>
-        </div>
+            <CartFooter 
+              total={calculateTotal()}
+              itemCount={cart.length}
+              onContinueShopping={handleContinueShopping}
+            />
+          </>
+        )}
       </div>
     </main>
   );

@@ -69,6 +69,7 @@
 .cartItem {
   display: flex;
   padding: $spacing-xl 0;
+  margin-bottom: $spacing-lg;
   
   @media (max-width: $breakpoint-sm) {
     flex-direction: column;
@@ -77,8 +78,8 @@
 }
 
 .itemImageContainer {
-  width: 120px;
-  height: 120px;
+  width: 200px;
+  height: 200px;
   margin-right: $spacing-xl;
   
   @media (max-width: $breakpoint-sm) {
@@ -101,22 +102,25 @@
   justify-content: flex-start;
   position: relative;
   flex: 1;
+  padding: $spacing-md 0;
 }
 
 .itemName {
-  font-size: $font-size-sm;
-  margin-bottom: $spacing-xs;
+  font-size: $font-size-lg;
+  color: $color-primary;
 }
 
 .itemSpecs {
-  font-size: $font-size-xs;
-  color: $color-secondary;
-  margin-bottom: $spacing-xs;
+  font-size: $font-size-lg;
+  color: $color-primary;
+  margin-bottom: $spacing-md;
 }
 
 .itemPrice {
-  font-size: $font-size-sm;
+  font-size: $font-size-lg;
+  color: $color-primary;
   margin-bottom: $spacing-md;
+
 }
 
 .removeButton {
@@ -124,7 +128,7 @@
   border: none;
   color: $color-danger;
   cursor: pointer;
-  font-size: $font-size-xs;
+  font-size: 0.9rem;
   padding: 0;
   align-self: flex-start;
   margin-top: auto;
@@ -164,7 +168,6 @@
       border: none;
       padding: 12px 40px;
       font-size: 16px;
-      font-weight: bold;
       cursor: pointer;
       border-radius: 4px;
 
