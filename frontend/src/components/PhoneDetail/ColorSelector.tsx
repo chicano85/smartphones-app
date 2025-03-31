@@ -9,20 +9,19 @@ interface ColorSelectorProps {
 
 export const ColorSelector = ({ options, selectedColor, onSelect }: ColorSelectorProps) => {
   return (
-    <div className={styles.optionSection}>
-      <h3 className={styles.optionTitle}>COLOR. CHOOSE YOUR FAVORITE.</h3>
+    <div>
+      <h3>Color</h3>
       <div className={styles.colorOptions}>
         {options.map(option => (
-          <button
+          <div
             key={option.name}
             className={`${styles.colorOption} ${selectedColor === option.name ? styles.selected : ''}`}
             style={{ backgroundColor: option.hexCode }}
             onClick={() => onSelect(option.name)}
-            title={option.name}
           />
         ))}
       </div>
-      <div className={styles.selectedColorName}>{selectedColor}</div>
+      {selectedColor && <div className={styles.selectedColorName}>{selectedColor}</div>}
     </div>
   );
 }; 

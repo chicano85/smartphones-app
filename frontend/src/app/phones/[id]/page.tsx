@@ -1,29 +1,23 @@
 import { Navbar } from '@/components/Navbar/Navbar';
-import { PhoneDetail } from '@/components/PhoneDetail/PhoneDetail';
-import { phoneService } from '@/services/api';
+import { PhoneDetailClient } from '@/components/PhoneDetail/PhoneDetailClient';
 import styles from './page.module.scss';
 
+// Desactivar caché para esta página
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
+// Usar una función asíncrona para la página
 export default async function PhoneDetailPage({ params }: { params: { id: string } }) {
-  try {
-    const phone = await phoneService.getPhoneById(params.id);
-    
-    return (
-      <main className={styles.main}>
-        <Navbar />
-        <div className={styles.container}>
-          <PhoneDetail phone={phone} />
-        </div>
-      </main>
-    );
-  } catch (error) {
-    console.error('Error fetching phone:', error);
-    return (
-      <main className={styles.main}>
-        <Navbar />
-        <div className={styles.container}>
-          <div className={styles.error}>Failed to load phone details. Please try again later.</div>
-        </div>
-      </main>
-    );
-  }
+  // Esperar a que los parámetros estén disponibles usando Promise.resolve
+  const resolvedParams = await Promise.resolve(params);
+  const id = resolvedParams.id;
+  
+  return (
+    <main className={styles.main}>
+      <Navbar />
+      <div className={styles.container}>
+        <PhoneDetailClient phoneId={id} />
+      </div>
+    </main>
+  );
 } 
