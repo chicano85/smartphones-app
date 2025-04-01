@@ -4,6 +4,7 @@ import { useCart } from '@/context/CartContext';
 import { PhoneDetail as PhoneDetailType } from '@/types/phone';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import styles from './PhoneDetail.module.scss';
 import { PhoneImageSection } from './PhoneImageSection';
 import { PhoneInfoSection } from './PhoneInfoSection';
@@ -65,18 +66,27 @@ export const PhoneDetail = ({ phone }: PhoneDetailProps) => {
   };
 
   const handleAddToCart = () => {
-    if (!selectedColor || !selectedStorage) return;
-
-    addToCart({
-      phoneId: phone.id,
-      name: phone.name,
-      brand: phone.brand,
-      image: currentImage,
-      color: selectedColor,
-      storage: selectedStorage,
-      price: finalPrice,
-      quantity: 1,
-    });
+    if (selectedStorage && selectedColor) {
+      addToCart({
+        phoneId: phone.id,
+        name: phone.name,
+        brand: phone.brand,
+        image: currentImage,
+        color: selectedColor,
+        storage: selectedStorage,
+        price: finalPrice,
+        quantity: 1,
+      });
+      
+      toast.success('Producto añadido al carrito', {
+        duration: 2000,
+        position: 'bottom-center',
+        style: {
+          background: '#333',
+          color: '#fff',
+        },
+      });
+    }
   };
 
   return (
