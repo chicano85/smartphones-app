@@ -1,8 +1,8 @@
-@import '../../styles/variables.scss';
+@use '../../styles/variables' as v;
 
 .navbar {
-  background-color: $color-white;
-  padding: $spacing-md 0;
+  background-color: v.$color-white;
+  padding: v.$spacing-md 0;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -11,7 +11,7 @@
 .container {
   max-width: 100vw;
   margin: 0 auto;
-  padding: $container-padding;
+  padding: v.$container-padding;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,36 +19,36 @@
 
 .logo {
   text-decoration: none;
-  color: $color-primary;
+  color: v.$color-primary;
   font-weight: bold;
-  font-size: $font-size-xl;
+  font-size: v.$font-size-xl;
   display: flex;
   align-items: center;
 }
 
 .cartLink {
   position: relative;
-  color: $color-primary;
+  color: v.$color-primary;
   text-decoration: none;
   display: flex;
   align-items: center;
 }
 
 .cartIcon {
-  font-size: $font-size-xl;
+  font-size: v.$font-size-xl;
 }
 
 .cartCount {
   position: absolute;
   top: -8px;
   right: -8px;
-  background-color: $color-primary;
-  color: $color-white;
+  background-color: v.$color-primary;
+  color: v.$color-white;
   border-radius: 50%;
   width: 20px;
   height: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: $font-size-xs;
+  font-size: v.$font-size-xs;
 }

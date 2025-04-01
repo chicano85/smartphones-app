@@ -1,40 +1,64 @@
-@import '../../styles/variables.scss';
+@use '../../styles/variables' as v;
+
+.main {
+  min-height: 100vh;
+  background-color: v.$color-white;
+  font-family: v.$font-family-base;
+}
+
+.container {
+  max-width: 100vw;
+  margin: 0 auto;
+  padding: v.$container-padding;
+  border-top: v.$border-width solid v.$color-light;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: v.$spacing-xl;
+  font-size: v.$font-size-lg;
+}
+
+.error {
+  color: v.$color-error;
+}
 
 .backLink {
-  margin: $spacing-xl 0;
+  margin: v.$spacing-xl 0;
 }
 
 .backButton {
   background: none;
   border: none;
-  color: $color-secondary;
+  color: v.$color-secondary;
   cursor: pointer;
-  font-size: $font-size-sm;
+  font-size: v.$font-size-sm;
   padding: 0;
   display: flex;
   align-items: center;
-  gap: $spacing-xs;
+  gap: v.$spacing-xs;
   font-weight: 300;
   letter-spacing: 1px;
 
   &:hover {
-    color: $color-primary;
+    color: v.$color-primary;
   }
 
   &::before {
     content: '<';
-    font-size: $font-size-md;
-    margin-right: $spacing-xs;
+    font-size: v.$font-size-md;
+    margin-right: v.$spacing-xs;
   }
 }
 
 .topSection {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: $spacing-xl;
-  margin-bottom: $spacing-xl;
+  gap: v.$spacing-xl;
+  margin-bottom: v.$spacing-xl;
 
-  @media (max-width: $breakpoint-md) {
+  @media (max-width: v.$breakpoint-md) {
     grid-template-columns: 1fr;
   }
 }
@@ -51,8 +75,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $color-white;
-  padding: $spacing-md;
+  background-color: v.$color-white;
+  padding: v.$spacing-md;
 }
 
 .phoneImage {
@@ -67,96 +91,105 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $color-light;
-  color: $color-secondary;
+  background-color: v.$color-light;
+  color: v.$color-secondary;
 }
 
 .phoneInfo {
   display: flex;
   flex-direction: column;
-  gap: $spacing-md;
+  gap: v.$spacing-md;
+  width: 100%;
+
+  @media (min-width: v.$breakpoint-md) {
+    width: 70%;
+  }
+
+  @media (min-width: v.$breakpoint-lg) {
+    width: 60%;
+  }
 }
 
 .brand {
-  font-size: $font-size-sm;
-  color: $color-secondary;
+  font-size: v.$font-size-sm;
+  color: v.$color-secondary;
   text-transform: uppercase;
 }
 
 .phoneName {
-  font-size: $font-size-xl;
+  font-size: v.$font-size-xl;
   margin: 0;
   text-transform: uppercase;
 }
 
 .priceSection {
-  margin: $spacing-sm 0;
+  margin: v.$spacing-sm 0;
 }
 
 .price {
-  font-size: $font-size-md;
+  font-size: v.$font-size-md;
   font-weight: 300;
-  color: $color-primary;
+  color: v.$color-primary;
 }
 
 .optionSection {
-  margin: $spacing-md 0;
+  margin: v.$spacing-md 0;
 }
 
 .optionTitle {
-  font-size: $font-size-sm;
-  margin-bottom: $spacing-sm;
+  font-size: v.$font-size-sm;
+  margin-bottom: v.$spacing-sm;
   text-transform: uppercase;
 }
 
 .colorOptions {
   display: flex;
-  gap: $spacing-sm;
-  margin-bottom: $spacing-xs;
+  gap: v.$spacing-sm;
+  margin-bottom: v.$spacing-xs;
 }
 
 .colorOption {
   width: 30px;
   height: 30px;
-  border: 1px solid $color-light;
+  border: 1px solid v.$color-light;
   cursor: pointer;
 
   &.selected {
-    outline: 2px solid $color-primary;
+    outline: 2px solid v.$color-primary;
     outline-offset: 2px;
   }
 }
 
 .selectedColorName {
-  font-size: $font-size-xs;
-  color: $color-secondary;
-  margin-top: $spacing-xs;
+  font-size: v.$font-size-xs;
+  color: v.$color-secondary;
+  margin-top: v.$spacing-xs;
 }
 
 .storageOptions {
   display: flex;
   flex-wrap: wrap;
-  gap: $spacing-sm;
-  margin-bottom: $spacing-sm;
+  gap: v.$spacing-sm;
+  margin-bottom: v.$spacing-sm;
 }
 
 .storageOption {
-  padding: $spacing-sm $spacing-md;
-  border: 1px solid $color-light;
-  background-color: $color-white;
+  padding: v.$spacing-sm v.$spacing-md;
+  border: 1px solid v.$color-light;
+  background-color: v.$color-white;
   cursor: pointer;
-  font-size: $font-size-sm;
+  font-size: v.$font-size-sm;
 
   &.selected {
-    border: 1px solid $color-primary;
-    background-color: $color-white;
-    color: $color-primary;
+    border: 1px solid v.$color-primary;
+    background-color: v.$color-white;
+    color: v.$color-primary;
   }
 }
 
 .addToCartButton {
-  background-color: #000;
-  color: #fff;
+  background-color: v.$color-primary;
+  color: v.$color-white;
   border: none;
   padding: 12px 24px;
   font-size: 16px;
@@ -169,8 +202,8 @@
 }
 
 .disabledButton {
-  background-color: #ccc;
-  color: #666;
+  background-color: v.$color-light;
+  color: v.$color-secondary;
   border: none;
   padding: 12px 24px;
   font-size: 16px;
@@ -183,15 +216,15 @@
 }
 
 .specifications {
-  margin: $spacing-xl 0;
+  margin: v.$spacing-xl 0;
 }
 
 .specificationsTitle {
-  font-size: $font-size-lg;
+  font-size: v.$font-size-lg;
 
-  margin-bottom: $spacing-md;
-  padding-bottom: $spacing-sm;
-  border-bottom: 1px solid $color-primary;
+  margin-bottom: v.$spacing-md;
+  padding-bottom: v.$spacing-sm;
+  border-bottom: 1px solid v.$color-primary;
   text-transform: uppercase;
 }
 
@@ -200,7 +233,7 @@
   border-collapse: collapse;
 
   tr {
-    border-bottom: 1px solid $color-primary;
+    border-bottom: 1px solid v.$color-primary;
 
     &:last-child {
       border-bottom: none;
@@ -208,31 +241,31 @@
   }
 
   td {
-    padding: $spacing-md 0;
+    padding: v.$spacing-md 0;
     vertical-align: top;
   }
 }
 
 .specLabel {
   width: 30%;
-  font-size: $font-size-xs;
-  color: $color-primary;
+  font-size: v.$font-size-xs;
+  color: v.$color-primary;
   text-transform: uppercase;
 }
 
 .specValue {
   width: 70%;
-  font-size: $font-size-sm;
+  font-size: v.$font-size-sm;
 }
 
 .similarItems {
-  margin: $spacing-xl 0;
+  margin: v.$spacing-xl 0;
   position: relative;
 }
 
 .similarTitle {
-  font-size: $font-size-lg;
-  margin-bottom: $spacing-md;
+  font-size: v.$font-size-lg;
+  margin-bottom: v.$spacing-md;
   text-transform: uppercase;
 }
 
@@ -247,7 +280,7 @@
   scroll-behavior: smooth;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
-  padding: $spacing-sm 0;
+  padding: v.$spacing-sm 0;
 
   &::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
@@ -259,12 +292,12 @@
   width: 250px;
   text-decoration: none;
   color: inherit;
-  border: 1px solid $color-light;
+  border: 1px solid v.$color-light;
   border-right: none;
   overflow: hidden;
 
   &:last-child {
-    border-right: 1px solid $color-light;
+    border-right: 1px solid v.$color-light;
   }
 }
 
@@ -273,8 +306,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $color-white;
-  padding: $spacing-md;
+  background-color: v.$color-white;
+  padding: v.$spacing-md;
 
   img {
     max-width: 100%;
@@ -284,19 +317,19 @@
 }
 
 .similarProductInfo {
-  padding: $spacing-md;
+  padding: v.$spacing-md;
   text-align: center;
 }
 
 .similarProductBrand {
-  font-size: $font-size-xs;
-  color: $color-secondary;
+  font-size: v.$font-size-xs;
+  color: v.$color-secondary;
   text-transform: uppercase;
 }
 
 .similarProductName {
-  font-size: $font-size-sm;
-  margin: $spacing-xs 0;
+  font-size: v.$font-size-sm;
+  margin: v.$spacing-xs 0;
   text-transform: uppercase;
   white-space: nowrap;
   overflow: hidden;
@@ -304,11 +337,11 @@
 }
 
 .similarProductPrice {
-  font-size: $font-size-sm;
+  font-size: v.$font-size-sm;
 }
 
 .divider {
   height: 1px;
-  background-color: $color-light;
-  margin-top: $spacing-xl;
+  background-color: v.$color-light;
+  margin-top: v.$spacing-xl;
 }

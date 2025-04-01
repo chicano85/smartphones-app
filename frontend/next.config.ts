@@ -2,17 +2,20 @@ import { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['example.com'],
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
+        hostname: 'store.storeimages.cdn-apple.com',
       },
       {
-        protocol: 'http',
-        hostname: '**',
+        protocol: 'https',
+        hostname: 'images.samsung.com',
       },
-    ],
+      {
+        protocol: 'https',
+        hostname: 'prueba-tecnica-api-tienda-moviles.onrender.com',
+      }
+    ]
   },
 };
 
