@@ -10,9 +10,10 @@ jest.mock('next/navigation', () => ({
 }));
 
 // Mock del CartContext
+const mockAddToCart = jest.fn();
 jest.mock('@/context/CartContext', () => ({
   useCart: () => ({
-    addToCart: jest.fn(),
+    addToCart: mockAddToCart,
   }),
 }));
 
@@ -67,5 +68,28 @@ describe('PhoneDetail', () => {
     const storageOption = screen.getByText('128GB');
     fireEvent.click(storageOption);
     expect(storageOption).toHaveClass('selected');
+  });
+
+  it('adds product to cart with selected options', () => {
+    render(<PhoneDetail phone={mockPhone} />);
+    
+    // Seleccionar color y almacenamiento
+    fireEvent.click(screen.getByTestId('color-option-black'));
+    fireEvent.click(screen.getByText('128GB'));
+    
+    // Añadir al carrito
+    fireEvent.click(screen.getByText('ADD TO CART'));
+    
+    // Verificar que se llamó a addToCart con los parámetros correctos
+    expect(mockAddToCart).toHaveBeenCalledWith({
+      phoneId: '1',
+      name: 'iPhone Test',
+      brand: 'Apple',
+      color: 'black',
+      storage: '128GB',
+      price: 999,
+      image: 'test-black.jpg',
+      quantity: 1,
+    });
   });
 }); 
