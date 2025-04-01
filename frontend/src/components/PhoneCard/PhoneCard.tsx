@@ -19,6 +19,8 @@ export const PhoneCard = ({ phone }: PhoneCardProps) => {
             alt={`${phone.brand} ${phone.name}`}
             className={styles.image}
             onError={() => setImageError(true)}
+            width="180"
+            height="180"
           />
         ) : (
           <div className={styles.placeholderImage}>
