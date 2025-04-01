@@ -74,7 +74,6 @@ export const PhoneDetail = ({ phone }: PhoneDetailProps) => {
       quantity: 1
     });
     
-    router.push('/cart');
   };
 
   return (
