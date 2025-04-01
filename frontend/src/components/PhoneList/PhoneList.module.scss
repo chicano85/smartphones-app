@@ -17,4 +17,10 @@
   @media (min-width: 1280px) {
     grid-template-columns: repeat(5, 1fr);
   }
+}
+
+.phoneGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
 } 

@@ -30,7 +30,7 @@ export const PhoneInfoSection = ({
     <div className={styles.phoneInfo}>
       <h1 className={styles.phoneName}>{phone.name.toUpperCase()}</h1>
       <div className={styles.priceSection}>
-        <div className={styles.price}>{finalPrice} EUR</div>
+        <div className={styles.price}>From {finalPrice} EUR</div>
       </div>
       
       <StorageSelector 
