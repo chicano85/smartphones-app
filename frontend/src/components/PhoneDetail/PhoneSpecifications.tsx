@@ -53,10 +53,12 @@ export const PhoneSpecifications = ({ phone }: PhoneSpecificationsProps) => {
           </tr>
           <tr>
             <td className={styles.specLabel}>SCREEN REFRESH RATE</td>
-            <td className={styles.specValue}>{phone.specs.screenRefreshRate}</td>
+            <td className={styles.specValue}>
+              {phone.specs.screenRefreshRate}
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
   );
-}; 
+};

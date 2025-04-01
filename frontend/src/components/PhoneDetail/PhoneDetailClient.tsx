@@ -43,10 +43,12 @@ export const PhoneDetailClient = ({ phoneId }: PhoneDetailClientProps) => {
     return (
       <div className={styles.error}>
         <h1>Error</h1>
-        <p>{error || 'Failed to load phone details. Please try again later.'}</p>
+        <p>
+          {error || 'Failed to load phone details. Please try again later.'}
+        </p>
       </div>
     );
   }
 
   return <PhoneDetail phone={phone} />;
-}; 
+};

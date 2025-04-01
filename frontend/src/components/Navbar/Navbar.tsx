@@ -3,7 +3,7 @@
 import { useCart } from '@/context/CartContext';
 import Image from 'next/image';
 import Link from 'next/link';
-import { AiOutlineShopping } from "react-icons/ai";
+import { AiOutlineShopping } from 'react-icons/ai';
 import styles from './Navbar.module.scss';
 
 export const Navbar = () => {
@@ -14,7 +14,7 @@ export const Navbar = () => {
     <nav className={styles.navbar}>
       <div className={styles.container}>
         <Link href="/" className={styles.logo}>
-          <Image 
+          <Image
             src="/assets/header_logo.png"
             alt="MBST Logo"
             width={100}
@@ -22,7 +22,7 @@ export const Navbar = () => {
             priority
           />
         </Link>
-        
+
         <Link href="/cart" className={styles.cartLink}>
           <span className={styles.cartIcon}>
             <AiOutlineShopping size={24} />
@@ -34,4 +34,4 @@ export const Navbar = () => {
       </div>
     </nav>
   );
-}; 
+};

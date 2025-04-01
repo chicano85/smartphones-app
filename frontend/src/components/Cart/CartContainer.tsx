@@ -19,7 +19,10 @@ export function CartContainer() {
   }, []);
 
   const calculateTotal = () => {
-    return cart.reduce((total, item) => total + item.price * (item.quantity || 1), 0);
+    return cart.reduce(
+      (total, item) => total + item.price * (item.quantity || 1),
+      0,
+    );
   };
 
   if (!isClient) {
@@ -49,7 +52,7 @@ export function CartContainer() {
           <>
             <div className={styles.cartItems}>
               {cart.map((item, index) => (
-                <CartItem 
+                <CartItem
                   key={`${item.phoneId}-${item.color}-${item.storage}-${index}`}
                   item={item}
                   index={index}
@@ -57,7 +60,7 @@ export function CartContainer() {
                 />
               ))}
             </div>
-            <CartFooter 
+            <CartFooter
               total={calculateTotal()}
               itemCount={cart.length}
               onContinueShopping={handleContinueShopping}
@@ -67,4 +70,4 @@ export function CartContainer() {
       </div>
     </main>
   );
-} 
+}

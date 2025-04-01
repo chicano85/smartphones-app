@@ -11,19 +11,19 @@
   border: 1px solid $color-secondary;
   background-color: $color-white;
   cursor: pointer;
-  
+
   &:hover {
     background-color: $color-light;
   }
-  
+
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
-  
+
   &.active {
     background-color: $color-primary;
     color: $color-white;
     border-color: $color-primary;
   }
-} 
+}

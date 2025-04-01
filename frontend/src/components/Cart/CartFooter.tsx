@@ -54,4 +54,4 @@ export const CartFooter = ({ total, itemCount }: CartFooterProps) => {
       </button>
     </div>
   );
-}; 
+};

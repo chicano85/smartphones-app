@@ -12,4 +12,4 @@ export const CartEmpty = ({ onContinueShopping }: CartEmptyProps) => {
       </button>
     </div>
   );
-}; 
+};

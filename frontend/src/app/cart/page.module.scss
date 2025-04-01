@@ -41,18 +41,20 @@
   text-decoration: none;
   text-transform: uppercase;
   font-size: $font-size-sm;
-  transition: background-color $transition-speed, color $transition-speed;
+  transition:
+    background-color $transition-speed,
+    color $transition-speed;
   text-align: center;
-  
+
   @media (max-width: $breakpoint-sm) {
-    width: 100%;  
-    max-width: 300px;  
-    margin: 0 auto; 
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
   }
 
   @media (min-width: $breakpoint-sm) {
-    width: 30%;  
-    margin: 0;  
+    width: 30%;
+    margin: 0;
   }
 }
 
@@ -70,7 +72,7 @@
   display: flex;
   padding: $spacing-xl 0;
   margin-bottom: $spacing-lg;
-  
+
   @media (max-width: $breakpoint-sm) {
     flex-direction: column;
     padding: $spacing-md 0;
@@ -81,7 +83,7 @@
   width: 200px;
   height: 200px;
   margin-right: $spacing-xl;
-  
+
   @media (max-width: $breakpoint-sm) {
     width: 100%;
     height: auto;
@@ -124,7 +126,6 @@
   font-size: $font-size-lg;
   color: $color-primary;
   margin-bottom: $spacing-md;
-
 }
 
 .removeButton {
@@ -136,8 +137,7 @@
   padding: 0;
   align-self: flex-start;
   margin-top: auto;
-  
-  
+
   @media (max-width: $breakpoint-sm) {
     margin-top: $spacing-md;
   }
@@ -234,8 +234,7 @@
   font-size: $font-size-sm;
   display: inline-block;
   text-align: center;
-  
-  
+
   @media (max-width: $breakpoint-md) {
     width: 100%;
     order: 3;
@@ -246,7 +245,7 @@
   display: flex;
   align-items: center;
   gap: $spacing-md;
-  
+
   @media (max-width: $breakpoint-md) {
     order: 1;
     width: 100%;
@@ -274,11 +273,11 @@
   font-size: $font-size-md;
   text-transform: uppercase;
   min-width: 150px;
-  
+
   &:hover {
     opacity: 0.9;
   }
-  
+
   @media (max-width: $breakpoint-md) {
     order: 2;
     width: 100%;
@@ -309,7 +308,7 @@
       width: 140px;
       height: 140px;
       flex-shrink: 0;
-      
+
       img {
         width: 100%;
         height: 100%;
@@ -394,4 +393,4 @@
       }
     }
   }
-} 
+}

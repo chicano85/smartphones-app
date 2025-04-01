@@ -33,7 +33,9 @@ export const PhoneDetail = ({ phone }: PhoneDetailProps) => {
   // Actualizar imagen cuando cambia el color seleccionado
   useEffect(() => {
     if (selectedColor) {
-      const colorOption = phone.colorOptions.find(c => c.name === selectedColor);
+      const colorOption = phone.colorOptions.find(
+        (c) => c.name === selectedColor,
+      );
       if (colorOption) {
         setCurrentImage(colorOption.imageUrl);
       }
@@ -43,7 +45,9 @@ export const PhoneDetail = ({ phone }: PhoneDetailProps) => {
   // Actualizar precio cuando cambia el almacenamiento seleccionado
   useEffect(() => {
     if (selectedStorage) {
-      const storageOption = phone.storageOptions.find(s => s.capacity === selectedStorage);
+      const storageOption = phone.storageOptions.find(
+        (s) => s.capacity === selectedStorage,
+      );
       if (storageOption) {
         setFinalPrice(storageOption.price);
       }
@@ -62,7 +66,7 @@ export const PhoneDetail = ({ phone }: PhoneDetailProps) => {
 
   const handleAddToCart = () => {
     if (!selectedColor || !selectedStorage) return;
-    
+
     addToCart({
       phoneId: phone.id,
       name: phone.name,
@@ -71,25 +75,26 @@ export const PhoneDetail = ({ phone }: PhoneDetailProps) => {
       color: selectedColor,
       storage: selectedStorage,
       price: finalPrice,
-      quantity: 1
+      quantity: 1,
     });
-    
   };
 
   return (
     <div>
       <div className={styles.backLink}>
-        <button onClick={() => router.back()} className={styles.backButton}>BACK</button>
+        <button onClick={() => router.back()} className={styles.backButton}>
+          BACK
+        </button>
       </div>
-      
+
       <div className={styles.topSection}>
-        <PhoneImageSection 
-          image={currentImage} 
-          name={phone.name} 
-          color={selectedColor} 
+        <PhoneImageSection
+          image={currentImage}
+          name={phone.name}
+          color={selectedColor}
         />
-        
-        <PhoneInfoSection 
+
+        <PhoneInfoSection
           phone={phone}
           selectedColor={selectedColor}
           setSelectedColor={handleColorSelect}
@@ -99,13 +104,12 @@ export const PhoneDetail = ({ phone }: PhoneDetailProps) => {
           onAddToCart={handleAddToCart}
         />
       </div>
-      
+
       <PhoneSpecifications phone={phone} />
-      
+
       {phone.similarProducts && phone.similarProducts.length > 0 && (
         <SimilarItems similarProducts={phone.similarProducts} />
       )}
-      
     </div>
   );
-}; 
+};

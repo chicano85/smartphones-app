@@ -10,7 +10,6 @@ export interface PhoneSpecifications {
   camera?: string;
   battery?: string;
   os?: string;
-  [key: string]: any;
 }
 
 export interface Phone {
@@ -65,4 +64,4 @@ export interface PhoneListResponse {
   currentPage: number;
   totalPages: number;
   total: number;
-} 
+}
