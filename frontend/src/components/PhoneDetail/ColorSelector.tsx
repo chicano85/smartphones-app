@@ -10,7 +10,7 @@ interface ColorSelectorProps {
 export const ColorSelector = ({ options, selectedColor, onSelect }: ColorSelectorProps) => {
   return (
     <div>
-      <h3>Color</h3>
+      <p>COLOR. PICK YOUR FAVORITE.</p>
       <div className={styles.colorOptions}>
         {options.map(option => (
           <div

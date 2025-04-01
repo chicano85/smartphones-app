@@ -10,7 +10,7 @@ interface StorageSelectorProps {
 export const StorageSelector = ({ options, selectedStorage, onSelect }: StorageSelectorProps) => {
   return (
     <div>
-      <h3>Storage</h3>
+      <p>STORAGE. HOW MUCH STORAGE DO YOU NEED?</p>
       <div className={styles.storageOptions}>
         {options.map(option => (
           <div

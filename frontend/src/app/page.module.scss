@@ -2,7 +2,7 @@
 
 .main {
   min-height: 100vh;
-  background-color: white;
+  background-color: $color-white;
   font-family: Helvetica, Arial, sans-serif;
 }
 
@@ -19,9 +19,9 @@
 }
 
 .error {
-  color: red;
+  color: $color-error;
 }
 
 .noResults {
-  color: #666;
+  color: $color-secondary;
 } 
