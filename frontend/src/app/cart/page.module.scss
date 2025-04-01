@@ -27,10 +27,9 @@
 .emptyCart {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1;
-  text-align: center;
+  flex: 1;
+  justify-content: flex-end;
+  padding-bottom: 40px;
 }
 
 .emptyMessage {
@@ -49,6 +48,18 @@
   text-transform: uppercase;
   font-size: $font-size-sm;
   transition: background-color $transition-speed, color $transition-speed;
+  text-align: center;
+  
+  @media (max-width: $breakpoint-sm) {
+    width: 100%;  
+    max-width: 300px;  
+    margin: 0 auto; 
+  }
+
+  @media (min-width: $breakpoint-sm) {
+    width: 30%;  
+    margin: 0;  
+  }
   
   &:hover {
     background-color: $color-primary;
@@ -151,6 +162,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
+  border-top: 1px solid #eee;
   margin-top: 20px;
   gap: 20px;
 
