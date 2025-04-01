@@ -1,6 +1,6 @@
 import { Navbar } from '@/components/Navbar/Navbar';
+import styles from '@/components/PhoneDetail/PhoneDetail.module.scss';
 import { PhoneDetailClient } from '@/components/PhoneDetail/PhoneDetailClient';
-import styles from './page.module.scss';
 
 // Desactivar caché para esta página
 export const dynamic = 'force-dynamic';

@@ -1,4 +1,5 @@
-@import '../../styles/variables.scss';
+@use '../../styles/variables' as v;
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -8,12 +9,12 @@
 
 .pageButton {
   padding: 0.5rem 1rem;
-  border: 1px solid $color-secondary;
-  background-color: $color-white;
+  border: 1px solid v.$color-secondary;
+  background-color: v.$color-white;
   cursor: pointer;
 
   &:hover {
-    background-color: $color-light;
+    background-color: v.$color-light;
   }
 
   &:disabled {
@@ -22,8 +23,8 @@
   }
 
   &.active {
-    background-color: $color-primary;
-    color: $color-white;
-    border-color: $color-primary;
+    background-color: v.$color-primary;
+    color: v.$color-white;
+    border-color: v.$color-primary;
   }
 }
