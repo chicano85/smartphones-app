@@ -1,50 +1,41 @@
 'use client';
 
+import { Navbar } from '@/components/Navbar/Navbar';
+import { Pagination } from '@/components/Pagination/Pagination';
+import { PhoneList } from '@/components/PhoneList/PhoneList';
+import { SearchBar } from '@/components/SearchBar/SearchBar';
+import { phoneService } from '@/services/api';
 import { Phone } from '@/types/phone';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import pageStyles from '../../app/page.module.scss';
-import { PhoneList } from './PhoneList';
+import styles from '../../app/page.module.scss';
 
-export const PhoneListContainer = () => {
-  const [phones, setPhones] = useState<Phone[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  
+const ITEMS_PER_PAGE = 20;
+
+export function PhoneListContainer() {
   const searchParams = useSearchParams();
-  const searchQuery = searchParams.get('search') || '';
+  const search = searchParams.get('search') || '';
+  const pageParam = searchParams.get('page');
+  const currentPage = pageParam ? parseInt(pageParam, 10) : 1;
+  
+  const [phones, setPhones] = useState<Phone[]>([]);
+  const [totalResults, setTotalResults] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchPhones = async () => {
       try {
         setLoading(true);
+        const allData = await phoneService.getPhones(search);
+        setTotalResults(allData.length);
         
-        // URL de la API
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://prueba-tecnica-api-tienda-moviles.onrender.com';
-        const timestamp = new Date().getTime();
-        const queryParams = searchQuery ? `?search=${encodeURIComponent(searchQuery)}&_=${timestamp}` : `?_=${timestamp}`;
-        const url = `${apiUrl}/products${queryParams}`;
+        const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+        const endIndex = startIndex + ITEMS_PER_PAGE;
+        const paginatedData = allData.slice(startIndex, endIndex);
         
-        console.log('Client: Fetching phones from URL:', url);
-        
-        // Usar fetch directamente para asegurarnos de que se vea en Network
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': '87909682e6cd74208f41a6ef39fe4191',
-            'Cache-Control': 'no-cache, no-store, must-revalidate'
-          }
-        });
-        
-        if (!response.ok) {
-          throw new Error(`API responded with status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        console.log('Client: Phones received:', data);
-        setPhones(data);
-        setError(null);
+        setPhones(paginatedData);
+        setError('');
       } catch (err) {
         console.error('Error fetching phones:', err);
         setError('Failed to load phones. Please try again later.');
@@ -54,24 +45,32 @@ export const PhoneListContainer = () => {
     };
 
     fetchPhones();
-  }, [searchQuery]);
+  }, [search, currentPage]);
 
-  if (loading) {
-    return <div className={pageStyles.loading}>Loading...</div>;
-  }
-
-  if (error) {
-    return (
-      <div className={pageStyles.error}>
-        <h1>Error</h1>
-        <p>{error}</p>
+  return (
+    <main className={styles.main}>
+      <Navbar />
+      <div className={styles.container}>
+        <SearchBar totalResults={totalResults} />
+        
+        {loading ? (
+          <div className={styles.loading}>Loading...</div>
+        ) : error ? (
+          <div className={styles.error}>{error}</div>
+        ) : phones.length > 0 ? (
+          <>
+            <PhoneList phones={phones} />
+            <Pagination 
+              currentPage={currentPage} 
+              totalItems={totalResults} 
+              itemsPerPage={ITEMS_PER_PAGE} 
+              search={search}
+            />
+          </>
+        ) : (
+          <div className={styles.noResults}>No phones found</div>
+        )}
       </div>
-    );
-  }
-
-  if (phones.length === 0) {
-    return <div className={pageStyles.noResults}>No phones found</div>;
-  }
-
-  return <PhoneList phones={phones} />;
-}; 
+    </main>
+  );
+} 
