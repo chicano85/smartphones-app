@@ -1,7 +1,7 @@
 'use client';
 
 import { useCart } from '@/context/CartContext';
-import { PhoneDetail as PhoneDetailType } from '@/types/phone';
+import { CartItem, PhoneDetail as PhoneDetailType } from '@/types/phone';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
@@ -67,6 +67,26 @@ export const PhoneDetail = ({ phone }: PhoneDetailProps) => {
 
   const handleAddToCart = () => {
     if (selectedStorage && selectedColor) {
+      const cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
+      const existingItem = cartItems.find(
+        (item: CartItem) => 
+          item.phoneId === phone.id && 
+          item.color === selectedColor && 
+          item.storage === selectedStorage
+      );
+
+      if (existingItem) {
+        toast.error('Este producto ya está en el carrito', {
+          duration: 2000,
+          position: 'bottom-center',
+          style: {
+            background: '#333',
+            color: '#fff',
+          },
+        });
+        return;
+      }
+
       addToCart({
         phoneId: phone.id,
         name: phone.name,
