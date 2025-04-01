@@ -11,7 +11,9 @@ interface SearchBarProps {
 export const SearchBar = ({ totalResults }: SearchBarProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
+  const [searchTerm, setSearchTerm] = useState(
+    searchParams.get('search') || '',
+  );
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
@@ -34,9 +36,7 @@ export const SearchBar = ({ totalResults }: SearchBarProps) => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <div className={styles.resultsCount}>
-        {totalResults} RESULTS
-      </div>
+      <div className={styles.resultsCount}>{totalResults} RESULTS</div>
     </div>
   );
-}; 
+};

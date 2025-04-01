@@ -53,10 +53,10 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const addToCart = (item: CartItem) => {
     // Verificar si el producto ya está en el carrito con las mismas opciones
     const existingItemIndex = cart.findIndex(
-      cartItem => 
-        cartItem.phoneId === item.phoneId && 
-        cartItem.color === item.color && 
-        cartItem.storage === item.storage
+      (cartItem) =>
+        cartItem.phoneId === item.phoneId &&
+        cartItem.color === item.color &&
+        cartItem.storage === item.storage,
     );
 
     if (existingItemIndex !== -1) {
@@ -65,17 +65,17 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       const existingItem = updatedCart[existingItemIndex];
       updatedCart[existingItemIndex] = {
         ...existingItem,
-        quantity: (existingItem.quantity || 1) + 1
+        quantity: (existingItem.quantity || 1) + 1,
       };
       setCart(updatedCart);
     } else {
       // Si es un producto nuevo, añadirlo al carrito con cantidad 1
-      setCart(prevCart => [...prevCart, { ...item, quantity: 1 }]);
+      setCart((prevCart) => [...prevCart, { ...item, quantity: 1 }]);
     }
   };
 
   const removeFromCart = (index: number) => {
-    setCart(prevCart => {
+    setCart((prevCart) => {
       const newCart = [...prevCart];
       newCart.splice(index, 1);
       return newCart;
@@ -84,8 +84,8 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
   const updateQuantity = (index: number, quantity: number) => {
     if (quantity <= 0) return;
-    
-    setCart(prevCart => {
+
+    setCart((prevCart) => {
       const newCart = [...prevCart];
       if (newCart[index]) {
         newCart[index] = { ...newCart[index], quantity };
@@ -99,7 +99,9 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart }}
+    >
       {children}
     </CartContext.Provider>
   );
@@ -107,4 +109,4 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
 export const useCart = () => {
   return useContext(CartContext);
-}; 
+};

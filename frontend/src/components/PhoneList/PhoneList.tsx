@@ -18,4 +18,4 @@ export const PhoneList = ({ phones }: PhoneListProps) => {
       ))}
     </div>
   );
-}; 
+};

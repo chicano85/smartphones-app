@@ -19,14 +19,21 @@ export const SimilarItems = ({ similarProducts }: SimilarItemsProps) => {
   return (
     <div className={styles.similarItems}>
       <h2 className={styles.similarTitle}>SIMILAR ITEMS</h2>
-      
+
       <div className={styles.carouselWrapper}>
         <div className={styles.carouselContainer} ref={scrollContainerRef}>
-          {similarProducts.map(product => (
-            <Link href={`/phones/${product.id}`} key={product.id} className={styles.similarProduct}>
+          {similarProducts.map((product) => (
+            <Link
+              href={`/phones/${product.id}`}
+              key={product.id}
+              className={styles.similarProduct}
+            >
               <div className={styles.similarProductImage}>
                 {product.imageUrl ? (
-                  <img src={product.imageUrl} alt={`${product.brand} ${product.name}`} />
+                  <img
+                    src={product.imageUrl}
+                    alt={`${product.brand} ${product.name}`}
+                  />
                 ) : (
                   <div className={styles.placeholderImage}>
                     {product.brand} {product.name}
@@ -34,16 +41,22 @@ export const SimilarItems = ({ similarProducts }: SimilarItemsProps) => {
                 )}
               </div>
               <div className={styles.similarProductInfo}>
-                <div className={styles.similarProductBrand}>{product.brand.toUpperCase()}</div>
-                <div className={styles.similarProductName}>{product.name.toUpperCase()}</div>
-                <div className={styles.similarProductPrice}>{product.basePrice} EUR</div>
+                <div className={styles.similarProductBrand}>
+                  {product.brand.toUpperCase()}
+                </div>
+                <div className={styles.similarProductName}>
+                  {product.name.toUpperCase()}
+                </div>
+                <div className={styles.similarProductPrice}>
+                  {product.basePrice} EUR
+                </div>
               </div>
             </Link>
           ))}
         </div>
       </div>
-      
+
       <div className={styles.divider}></div>
     </div>
   );
-}; 
+};

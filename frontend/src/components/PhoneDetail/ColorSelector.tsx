@@ -7,12 +7,16 @@ interface ColorSelectorProps {
   onSelect: (color: string) => void;
 }
 
-export const ColorSelector = ({ options, selectedColor, onSelect }: ColorSelectorProps) => {
+export const ColorSelector = ({
+  options,
+  selectedColor,
+  onSelect,
+}: ColorSelectorProps) => {
   return (
     <div>
       <p>COLOR. PICK YOUR FAVORITE.</p>
       <div className={styles.colorOptions}>
-        {options.map(option => (
+        {options.map((option) => (
           <div
             key={option.name}
             className={`${styles.colorOption} ${selectedColor === option.name ? styles.selected : ''}`}
@@ -21,7 +25,9 @@ export const ColorSelector = ({ options, selectedColor, onSelect }: ColorSelecto
           />
         ))}
       </div>
-      {selectedColor && <div className={styles.selectedColorName}>{selectedColor}</div>}
+      {selectedColor && (
+        <div className={styles.selectedColorName}>{selectedColor}</div>
+      )}
     </div>
   );
-}; 
+};

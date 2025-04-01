@@ -12,7 +12,9 @@
   padding: $container-padding;
 }
 
-.loading, .error, .noResults {
+.loading,
+.error,
+.noResults {
   text-align: center;
   padding: 2rem;
   font-size: 1.25rem;
@@ -24,4 +26,4 @@
 
 .noResults {
   color: $color-secondary;
-} 
+}

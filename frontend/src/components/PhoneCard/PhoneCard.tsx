@@ -37,4 +37,4 @@ export const PhoneCard = ({ phone }: PhoneCardProps) => {
       </div>
     </Link>
   );
-}; 
+};

@@ -14,7 +14,7 @@ export const phoneService = {
       throw error;
     }
   },
-  
+
   // Obtener un teléfono por su ID (para la vista de detalle)
   async getPhoneById(id: string): Promise<PhoneDetail> {
     try {
@@ -22,7 +22,7 @@ export const phoneService = {
       const timestamp = new Date().getTime();
       const url = `/products/${id.split('?')[0]}?_=${timestamp}`;
       console.log('Full URL:', axiosInstance.defaults.baseURL + url);
-      
+
       const response = await axiosInstance.get(url);
       console.log('Phone details received:', response.data);
       return response.data;
@@ -30,5 +30,5 @@ export const phoneService = {
       console.error(`Error fetching phone with ID ${id}:`, error);
       throw error;
     }
-  }
-}; 
+  },
+};
