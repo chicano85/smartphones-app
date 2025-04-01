@@ -12,7 +12,12 @@ interface SimilarItemsProps {
 export const SimilarItems = ({ similarProducts }: SimilarItemsProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  if (!similarProducts || similarProducts.length === 0) {
+  // Filtrar productos duplicados basándonos en el ID
+  const uniqueProducts = similarProducts.filter((product, index, self) =>
+    index === self.findIndex((p) => p.id === product.id)
+  );
+
+  if (!uniqueProducts || uniqueProducts.length === 0) {
     return null;
   }
 
@@ -22,7 +27,7 @@ export const SimilarItems = ({ similarProducts }: SimilarItemsProps) => {
 
       <div className={styles.carouselWrapper}>
         <div className={styles.carouselContainer} ref={scrollContainerRef}>
-          {similarProducts.map((product) => (
+          {uniqueProducts.map((product) => (
             <Link
               href={`/phones/${product.id}`}
               key={product.id}
