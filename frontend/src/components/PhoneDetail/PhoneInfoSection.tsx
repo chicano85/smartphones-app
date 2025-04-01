@@ -42,6 +42,7 @@ export const PhoneInfoSection = ({
         options={phone.colorOptions}
         selectedColor={selectedColor}
         onSelect={setSelectedColor}
+        data-testid="color-option"
       />
 
       {isAddToCartDisabled ? (

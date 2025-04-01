@@ -22,6 +22,7 @@ export const ColorSelector = ({
             className={`${styles.colorOption} ${selectedColor === option.name ? styles.selected : ''}`}
             style={{ backgroundColor: option.hexCode }}
             onClick={() => onSelect(option.name)}
+            data-testid={`color-option-${option.name}`}
           />
         ))}
       </div>
