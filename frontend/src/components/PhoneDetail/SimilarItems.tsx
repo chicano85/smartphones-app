@@ -61,7 +61,6 @@ export const SimilarItems = ({ similarProducts }: SimilarItemsProps) => {
         </div>
       </div>
 
-      <div className={styles.divider}></div>
     </div>
   );
 };
