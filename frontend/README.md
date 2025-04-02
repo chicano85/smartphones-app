@@ -45,6 +45,12 @@ NEXT_PUBLIC_API_URL=https://prueba-tecnica-api-tienda-moviles.onrender.com
 ```bash
 npm run dev
 ```
+### Production Mode
+
+```bash
+npm run build
+npm run start
+```
 
 5. Open your browser and navigate to `http://localhost:3000` to see the app in action.
 
