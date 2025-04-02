@@ -45,15 +45,15 @@ NEXT_PUBLIC_API_URL=https://prueba-tecnica-api-tienda-moviles.onrender.com
 ```bash
 npm run dev
 ```
+
+5. Open your browser and navigate to `http://localhost:3000` to see the app in action.
+
 ### Production Mode
 
 ```bash
 npm run build
 npm run start
 ```
-
-5. Open your browser and navigate to `http://localhost:3000` to see the app in action.
-
 ## 🧪 Testing
 
 Run the test suite:
@@ -83,6 +83,6 @@ frontend/
 - `Catalog`: Phone listing with filters and search
 - `Navbar`: Navigation and cart status
 
-## 🧑‍💻 Author
+## Author
 
 [Ángela Chicano](https://github.com/chicano85)
