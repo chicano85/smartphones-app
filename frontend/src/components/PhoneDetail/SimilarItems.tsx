@@ -45,10 +45,10 @@ export const SimilarItems = ({ similarProducts }: SimilarItemsProps) => {
                   </div>
                 )}
               </div>
-              <div className={styles.similarProductInfo}>
-                <div className={styles.similarProductBrand}>
-                  {product.brand.toUpperCase()}
-                </div>
+              <div className={styles.similarProductBrand}>
+                {product.brand.toUpperCase()}
+              </div>
+              <div className={styles.similarProductRow}>
                 <div className={styles.similarProductName}>
                   {product.name.toUpperCase()}
                 </div>
@@ -61,7 +61,6 @@ export const SimilarItems = ({ similarProducts }: SimilarItemsProps) => {
         </div>
       </div>
 
-      <div className={styles.divider}></div>
     </div>
   );
 };

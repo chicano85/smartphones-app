@@ -259,89 +259,87 @@
 }
 
 .similarItems {
-  margin: v.$spacing-xl 0;
-  position: relative;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .similarTitle {
   font-size: v.$font-size-lg;
-  margin-bottom: v.$spacing-md;
-  text-transform: uppercase;
+  margin-bottom: 20px;
+  text-align: left;
 }
 
 .carouselWrapper {
-  position: relative;
-  overflow: hidden;
-}
-
-.carouselContainer {
-  display: flex;
   overflow-x: auto;
-  scroll-behavior: smooth;
+  width: 100%;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
-  padding: v.$spacing-sm 0;
-
+  
   &::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
   }
 }
 
+.carouselContainer {
+  display: flex;
+  gap: 0;
+  width: max-content;
+}
+
 .similarProduct {
-  flex: 0 0 auto;
-  width: 250px;
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
   color: inherit;
-  border: 1px solid v.$color-light;
-  border-right: none;
-  overflow: hidden;
-
-  &:last-child {
-    border-right: 1px solid v.$color-light;
-  }
+  border: 1px solid #e0e0e0;
+  padding: 10px;
+  min-width: 230px;
+  max-width: 230px;
 }
 
 .similarProductImage {
-  height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: v.$color-white;
-  padding: v.$spacing-md;
-
+  height: 180px;
+  width: 100%;
+  margin-bottom: 10px;
+  
   img {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 80%;
+    max-height: 80%;
     object-fit: contain;
+    width: auto;
+    height: auto;
   }
 }
 
-.similarProductInfo {
-  padding: v.$spacing-md;
-  text-align: center;
+.similarProductBrand {
+  font-size: 12px;
+  color: v.$color-secondary;
+  margin-bottom: 4px;
+  text-align: left;
 }
 
-.similarProductBrand {
-  font-size: v.$font-size-xs;
-  color: v.$color-secondary;
-  text-transform: uppercase;
+.similarProductRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .similarProductName {
-  font-size: v.$font-size-sm;
-  margin: v.$spacing-xs 0;
-  text-transform: uppercase;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 14px;
+  color: v.$color-primary;
 }
 
 .similarProductPrice {
-  font-size: v.$font-size-sm;
+  font-size: 14px;
+  color: v.$color-primary;
+  text-align: right;
 }
 
 .divider {
   height: 1px;
-  background-color: v.$color-light;
-  margin-top: v.$spacing-xl;
+  background-color: #e0e0e0;
+  margin: 30px 0;
 }
